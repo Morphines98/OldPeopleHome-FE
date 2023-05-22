@@ -1,0 +1,54 @@
+// app global css in SCSS form
+
+.text-home-green-color {
+  color: #00737a !important;
+}
+
+//dashboard
+.dashboard-bubble-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 50px;
+  row-gap: 30px;
+  width: 70%;
+  margin: auto;
+  justify-content: space-evenly;
+}
+
+.dashboard-bubble {
+  width: 150px;
+  height: 150px;
+  background-color: #e7b35f;
+  color: white;
+  box-shadow: 0.5px 0.5px 2px #00000029;
+  border: 0.5px solid #d3d3d3;
+  opacity: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.page-title-container {
+  color: #007c80;
+  margin-left: 10%;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.page-title {
+  font-size: 35px;
+}
+
+.create-modal{
+  width: 700px;
+}

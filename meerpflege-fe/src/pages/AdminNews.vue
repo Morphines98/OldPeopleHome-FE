@@ -1,0 +1,130 @@
+<template>
+  <q-page class="q-ma-lg">
+    <div class="page-title-container">
+      <span class="page-title">News</span>
+      <div style="cursor: pointer; display:inline; margin-left:20px" @click="showCreateModal">
+        <q-badge :style="{ backgroundColor: '#027c80', borderRadius: '50%', width: '30px', height: '30px' }"
+          class="q-mr-sm">
+          <q-icon name="add" color="white" size="18px"></q-icon>
+        </q-badge>
+      </div>
+    </div>
+
+
+    <div class="q-ma-md">
+      <q-list>
+        <q-item class="custom-padding" clickable v-for="(item, index) in news" :key="item.id"
+          :class="{ 'even-item-bg': index % 2 !== 0 }">
+          <q-item-section>
+            <q-item-label class="item-title">{{ item.title }}</q-item-label>
+            <q-item-label caption>{{ formatDate(item.addedDate) }}</q-item-label>
+            <q-item-label>{{ item.content }}</q-item-label>
+
+          </q-item-section>
+          <q-item-section side class="flex items-center">
+            <q-icon name="delete" :style="{ color: '#E7886B' }" class="q-ma-sm"></q-icon>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </div>
+
+    <q-dialog v-model="createModal">
+      <q-card class="create-modal">
+        <q-card-section>
+          <div class="text-h6">Create news</div>
+        </q-card-section>
+
+        <q-separator />
+
+        <q-card-section style="max-height: 60vh; min-height: 60vh;" class="scroll">
+
+          <div style="margin-bottom:10px">
+            <q-input color="orange-5" rounded outlined v-model="emptyNewsItem.title" label="Titel" />
+          </div>
+          <div>
+            <q-input color="orange-5" rounded outlined v-model="emptyNewsItem.content" type="textarea" label="Inhalt" />
+          </div>
+          <div style="display: flex; flex-direction:row">
+            <div>
+              <q-radio class="custom-checkbox" v-model="switchGroup" label="All groups" val="0" color="cyan"
+                checked-icon="task_alt" unchecked-icon="highlight_off" />
+            </div>
+            <div v-for="group in groups" :key="group.id">
+              <q-radio class="custom-checkbox" v-model="switchGroup" :label="group.name" :val="group.id" color="cyan"
+                checked-icon="task_alt" unchecked-icon="highlight_off" />
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-separator />
+
+        <q-card-actions align="right">
+          <q-btn flat label="Decline" color="primary" v-close-popup />
+          <q-btn flat label="Accept" color="primary" @click="createNews" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+  </q-page>
+</template>
+
+<script setup lang="ts">
+
+import { Group } from 'src/models/Group';
+import { NewsItem } from 'src/models/NewsItem';
+import { useAccountStore } from 'src/stores/global';
+import { ref, onMounted } from 'vue';
+var store = useAccountStore();
+
+const news: NewsItem[] = ref([]);
+const groups: Group[] = ref([]);
+
+onMounted(async () => {
+  news.value = await store.getNews();
+  groups.value = await store.getGroups();
+});
+
+const switchGroup = ref("0");
+const createModal = ref(false)
+
+// const switchGroup = ref("0");
+
+const emptyNewsItem = ref({
+  id: 0,
+  title: '',
+  content: '',
+  forAllGroups: false,
+  groupId: null,
+} as NewsItem)
+
+const showCreateModal = () => {
+  createModal.value = true;
+}
+
+const createNews = () => {
+  if (switchGroup.value === '0') {
+    emptyNewsItem.value.forAllGroups = true;
+    emptyNewsItem.value.groupId = null;
+  }
+  else {
+    emptyNewsItem.value.groupId = parseInt(switchGroup.value);
+    emptyNewsItem.value.forAllGroups = false;
+  }
+
+  store.crateNews(emptyNewsItem.value).then(() => {
+    location.reload();
+  })
+}
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  };
+  return new Intl.DateTimeFormat('de-DE', options).format(date);
+}
+
+</script>
