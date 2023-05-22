@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { getgroups } from 'process';
+import { Group } from 'src/models/Group';
 import { NewsItem } from 'src/models/NewsItem';
 import { AccountService } from 'src/services/account-service';
 import { GroupsService } from 'src/services/groups-service';
@@ -15,7 +16,7 @@ export const useAccountStore = defineStore('account', {
   state: () => ({
     user: null as User | null,
     jwtToken: localStorage.getItem('token') as string | null,
-    refreshToken: null as string | null,
+    refreshToken: 'dana' as string | null,
   }),
   getters: {
     isLoggedIn(): boolean {
@@ -26,7 +27,7 @@ export const useAccountStore = defineStore('account', {
     async logIn(model: { email: string; password: string }) {
       const user = await AccountService.login(model);
       this.jwtToken = user.token;
-      this.refreshToken = 'aa';
+      this.refreshToken = 'dana';
       localStorage.setItem('token', this.jwtToken);
 
       this.router.push('Dashboard');
@@ -49,6 +50,9 @@ export const useAccountStore = defineStore('account', {
 
     async crateNews(item: NewsItem){
       await NewsService.createNews(item);
+    },
+    async createGroup(item: Group){
+      await GroupsService.createGroup(item);
     }
   },
 });

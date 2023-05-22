@@ -8,5 +8,10 @@ export class GroupsService {
     console.log(response.data)
     const news = response.data as Group[];
     return news;
+  };
+  static async createGroup(item:Group): Promise<boolean> {
+    const response = await api.post(Endpoints.postGroup,item);
+    console.log(response.data)
+    return true;
   }
 }

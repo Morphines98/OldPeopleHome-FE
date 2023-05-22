@@ -31,9 +31,10 @@ export default route(function (/* { store, ssrContext } */) {
 
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
-  const auth = useAccountStore();
 
   Router.beforeEach((to, from, next) => {
+    
+    const auth = useAccountStore();
     if (!to.meta.public && !auth.isLoggedIn) {
       next({ name: 'Login' });
     } else {

@@ -10,4 +10,5 @@ export class Endpoints {
   static createNews = 'news';
 
   static getGroups = 'HomeGroups';
+  static postGroup = 'HomeGroups';
 }
