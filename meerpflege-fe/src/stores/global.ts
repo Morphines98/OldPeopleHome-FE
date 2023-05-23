@@ -53,6 +53,9 @@ export const useAccountStore = defineStore('account', {
     },
     async createGroup(item: Group){
       await GroupsService.createGroup(item);
+    },
+    async editGroup(item: Group){
+      await GroupsService.editGroup(item);
     }
   },
 });

@@ -11,4 +11,6 @@ export class Endpoints {
 
   static getGroups = 'HomeGroups';
   static postGroup = 'HomeGroups';
+  static putGroup = 'HomeGroups';
+
 }
