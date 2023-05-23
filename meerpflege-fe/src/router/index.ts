@@ -33,10 +33,9 @@ export default route(function (/* { store, ssrContext } */) {
   });
 
   Router.beforeEach((to, from, next) => {
-    
     const auth = useAccountStore();
     if (!to.meta.public && !auth.isLoggedIn) {
-      next({ name: 'Login' });
+      next({ path: '/login' });
     } else {
       next();
     }

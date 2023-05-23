@@ -32,6 +32,8 @@
 import { useAccountStore } from 'src/stores/global';
 import { ref } from 'vue';
 
+console.log("da");
+
 const store = useAccountStore();
 const email = ref('');
 const password = ref('');

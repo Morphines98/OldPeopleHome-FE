@@ -88,8 +88,6 @@ onMounted(async () => {
 const switchGroup = ref("0");
 const createModal = ref(false)
 
-// const switchGroup = ref("0");
-
 const emptyNewsItem = ref({
   id: 0,
   title: '',

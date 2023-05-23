@@ -2,19 +2,13 @@
   <q-page class="q-ma-lg">
     <div class="page-title-container">
       <h4>Groups</h4>
-      <div
-        style="cursor: pointer; display: inline; margin-left: 20px"
-        @click="showCreateModal"
-      >
-        <q-badge
-          :style="{
-            backgroundColor: '#027c80',
-            borderRadius: '50%',
-            width: '30px',
-            height: '30px',
-          }"
-          class="q-mr-sm"
-        >
+      <div style="cursor: pointer; display: inline; margin-left: 20px" @click="showCreateModal">
+        <q-badge :style="{
+          backgroundColor: '#027c80',
+          borderRadius: '50%',
+          width: '30px',
+          height: '30px',
+        }" class="q-mr-sm">
           <q-icon name="add" color="white" size="18px"></q-icon>
         </q-badge>
       </div>
@@ -34,15 +28,12 @@
 
       <q-item-section>{{ group.name }}</q-item-section>
     </q-item> -->
-<div class="dashboard-bubble-container" >
-  <div class="dashboard-bubble" style="background-color: #007C80;" v-for="group in groups"
-      :key="group.id"
-      clickable
-      v-ripple
-      @click="showEditModal(group.id)">
+    <div class="dashboard-bubble-container">
+      <div class="dashboard-bubble" style="background-color: #007C80;" v-for="group in groups" :key="group.id" clickable
+        v-ripple @click="showEditModal(group.id)">
         <span>{{ group.name }}</span>
       </div>
-  </div>
+    </div>
 
     <q-dialog v-model="createModal">
       <q-card class="create-modal">
@@ -54,13 +45,7 @@
 
         <q-card-section class="scroll">
           <div style="margin-bottom: 10px">
-            <q-input
-              color="orange-5"
-              rounded
-              outlined
-              v-model="emptyGroupItem.name"
-              label="Name"
-            />
+            <q-input color="orange-5" rounded outlined v-model="emptyGroupItem.name" label="Name" />
           </div>
         </q-card-section>
 
@@ -85,13 +70,7 @@
 
         <q-card-section class="scroll">
           <div style="margin-bottom: 10px">
-            <q-input
-              color="orange-5"
-              rounded
-              outlined
-              v-model="editGroupItem.name"
-              label="Name"
-            />
+            <q-input color="orange-5" rounded outlined v-model="editGroupItem.name" label="Name" />
           </div>
         </q-card-section>
 
@@ -112,7 +91,7 @@ import { useAccountStore } from 'src/stores/global';
 import { onMounted, ref } from 'vue';
 
 var store = useAccountStore();
-const groups: Group[] = ref([]);
+const groups = ref([] as Group[]);
 const createModal = ref(false);
 const editModal = ref(false);
 const editGroupItem = ref({
@@ -135,18 +114,24 @@ const createGroup = () => {
   });
 };
 
-const editGroup = () =>{
-  store.editGroup(editGroupItem.value).then(()=>{
+const editGroup = () => {
+  store.editGroup(editGroupItem.value).then(() => {
     location.reload();
   });
 
 }
+
 const showCreateModal = () => {
   createModal.value = true;
 };
 
 const showEditModal = (id: number) => {
   editGroupItem.value.id = id;
+  let group = groups.value.find(item => item.id === id);
+  if (group && group.name)
+    editGroupItem.value.name = group.name;
+
   editModal.value = true;
 };
+
 </script>

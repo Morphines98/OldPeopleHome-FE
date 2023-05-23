@@ -10,7 +10,7 @@
           <span>News</span>
         </div>
       </RouterLink>
-      <RouterLink to="/application/groups">
+      <RouterLink to="/application/groups" style="text-decoration: none;">
       <div class="dashboard-bubble">
         <span>Groups</span>
       </div>
