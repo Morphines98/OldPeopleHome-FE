@@ -28,9 +28,12 @@
 
       <q-item-section>{{ group.name }}</q-item-section>
     </q-item> -->
-    <div class="dashboard-bubble-container">
-      <div class="dashboard-bubble" style="background-color: #007C80;" v-for="group in groups" :key="group.id" clickable
-        v-ripple @click="showEditModal(group.id)">
+<div class="dashboard-bubble-container" >
+  <div class="dashboard-bubble" :style="{ backgroundColor: generatorColors()  }" v-for="group in groups"
+      :key="group.id"
+      clickable
+      v-ripple
+      @click="showEditModal(group.id)">
         <span>{{ group.name }}</span>
       </div>
     </div>
@@ -134,4 +137,13 @@ const showEditModal = (id: number) => {
   editModal.value = true;
 };
 
+const generatorColors =()=> {
+  const base = 256;
+    const bias = 100;  
+    let r = Math.floor((Math.random() * (base - bias)) + bias);
+    let g = Math.floor((Math.random() * (base - bias)) + bias);
+    let b = Math.floor((Math.random() * (base - bias)) + bias);
+
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
 </script>
