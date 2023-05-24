@@ -13,21 +13,6 @@
         </q-badge>
       </div>
     </div>
-    <!-- <q-item
-      v-for="group in groups"
-      :key="group.id"
-      clickable
-      v-ripple
-      @click="showEditModal(group.id)"
-    >
-      <q-item-section avatar>
-        <q-avatar color="primary" text-color="white">
-          {{ group.name.charAt(0) }}
-        </q-avatar>
-      </q-item-section>
-
-      <q-item-section>{{ group.name }}</q-item-section>
-    </q-item> -->
 <div class="dashboard-bubble-container" >
   <div class="dashboard-bubble" :style="{ backgroundColor: generatorColors()  }" v-for="group in groups"
       :key="group.id"
@@ -66,7 +51,10 @@
     <q-dialog v-model="editModal">
       <q-card class="create-modal">
         <q-card-section>
+          <div style="display: flex; justify-content: space-between;">
           <div class="text-h6">Edit Group</div>
+          <q-btn flat round @click="deleteGroup" color="red" icon="delete" />
+          </div>
         </q-card-section>
 
         <q-separator />
@@ -116,6 +104,12 @@ const createGroup = () => {
     location.reload();
   });
 };
+
+const deleteGroup = () =>{
+  store.deleteGroup(editGroupItem.value.id).then(() => {
+    location.reload();
+  });
+}
 
 const editGroup = () => {
   store.editGroup(editGroupItem.value).then(() => {

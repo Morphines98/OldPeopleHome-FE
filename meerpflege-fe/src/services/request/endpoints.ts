@@ -8,9 +8,13 @@ export class Endpoints {
 
   static getNews = 'news';
   static createNews = 'news';
+  static deleteNews ='news';
+  static updateNews ='news';
 
   static getGroups = 'HomeGroups';
   static postGroup = 'HomeGroups';
   static putGroup = 'HomeGroups';
+  static deleteGroup = 'HomeGroups';
+
 
 }

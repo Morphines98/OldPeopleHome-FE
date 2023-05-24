@@ -21,4 +21,9 @@ export class GroupsService {
     console.log(response.data)
     return true;
   }
+  static async deleteGroup(id:number): Promise<boolean> {
+    const response = await api.delete(Endpoints.deleteGroup+'/'+id);
+    console.log(response.data)
+    return true;
+  }
 }

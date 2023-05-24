@@ -43,19 +43,27 @@ export const useAccountStore = defineStore('account', {
     async getNews() {
       return await NewsService.getNews();
     },
-
+    async deleteNews(id:number) {
+      return await NewsService.deleteNews(id);
+    },
+    async editNews(item: NewsItem) {
+      return await NewsService.editNews(item);
+    },
+    async crateNews(item: NewsItem){
+          await NewsService.createNews(item);
+    },
     async getGroups() {
       return await GroupsService.getGroups();
-    },
-
-    async crateNews(item: NewsItem){
-      await NewsService.createNews(item);
     },
     async createGroup(item: Group){
       await GroupsService.createGroup(item);
     },
     async editGroup(item: Group){
       await GroupsService.editGroup(item);
-    }
+    },
+    async deleteGroup(id: number){
+      await GroupsService.deleteGroup(id);
+    },
+    // async getNurses
   },
 });
