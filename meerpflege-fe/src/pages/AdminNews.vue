@@ -2,19 +2,13 @@
   <q-page class="q-ma-lg">
     <div class="page-title-container">
       <span class="page-title">News</span>
-      <div
-        style="cursor: pointer; display: inline; margin-left: 20px"
-        @click="showCreateModal"
-      >
-        <q-badge
-          :style="{
-            backgroundColor: '#027c80',
-            borderRadius: '50%',
-            width: '30px',
-            height: '30px',
-          }"
-          class="q-mr-sm"
-        >
+      <div style="cursor: pointer; display: inline; margin-left: 20px" @click="showCreateModal">
+        <q-badge :style="{
+          backgroundColor: '#027c80',
+          borderRadius: '50%',
+          width: '30px',
+          height: '30px',
+        }" class="q-mr-sm">
           <q-icon name="add" color="white" size="18px"></q-icon>
         </q-badge>
       </div>
@@ -22,13 +16,8 @@
 
     <div class="q-ma-md">
       <q-list>
-        <q-item
-          class="custom-padding"
-          clickable
-          v-for="(item, index) in news"
-          :key="item.id"
-          :class="{ 'even-item-bg': index % 2 !== 0 }"
-        >
+        <q-item class="custom-padding" clickable v-for="(item, index) in news" :key="item.id"
+          :class="{ 'even-item-bg': index % 2 !== 0 }">
           <q-item-section @click="showModalEditNews(item.id)">
             <q-item-label class="item-title">{{ item.title }}</q-item-label>
             <q-item-label caption>{{
@@ -37,12 +26,8 @@
             <q-item-label>{{ item.content }}</q-item-label>
           </q-item-section>
           <q-item-section side class="flex items-center">
-            <q-icon
-              name="delete"
-              :style="{ color: '#E7886B' }"
-              @click.stop="deletenews(item.id)"
-              class="q-ma-sm"
-            ></q-icon>
+            <q-icon name="delete" :style="{ color: '#E7886B' }" @click.stop="deletenews(item.id)"
+              class="q-ma-sm"></q-icon>
           </q-item-section>
         </q-item>
       </q-list>
@@ -56,51 +41,21 @@
 
         <q-separator />
 
-        <q-card-section
-          style="max-height: 60vh; min-height: 60vh"
-          class="scroll"
-        >
+        <q-card-section style="max-height: 60vh; min-height: 60vh" class="scroll">
           <div style="margin-bottom: 10px">
-            <q-input
-              color="orange-5"
-              rounded
-              outlined
-              v-model="emptyNewsItem.title"
-              label="Titel"
-            />
+            <q-input color="orange-5" rounded outlined v-model="emptyNewsItem.title" label="Titel" />
           </div>
           <div>
-            <q-input
-              color="orange-5"
-              rounded
-              outlined
-              v-model="emptyNewsItem.content"
-              type="textarea"
-              label="Inhalt"
-            />
+            <q-input color="orange-5" rounded outlined v-model="emptyNewsItem.content" type="textarea" label="Inhalt" />
           </div>
           <div style="display: flex; flex-direction: row; flex-wrap: wrap">
             <div>
-              <q-radio
-                class="custom-checkbox"
-                v-model="switchGroup"
-                label="All groups"
-                val="0"
-                color="cyan"
-                checked-icon="task_alt"
-                unchecked-icon="highlight_off"
-              />
+              <q-radio class="custom-checkbox" v-model="switchGroup" label="All groups" val="0" color="cyan"
+                checked-icon="task_alt" unchecked-icon="highlight_off" />
             </div>
             <div v-for="group in groups" :key="group.id">
-              <q-radio
-                class="custom-checkbox"
-                v-model="switchGroup"
-                :label="group.name"
-                :val="group.id"
-                color="cyan"
-                checked-icon="task_alt"
-                unchecked-icon="highlight_off"
-              />
+              <q-radio class="custom-checkbox" v-model="switchGroup" :label="group.name" :val="group.id" color="cyan"
+                checked-icon="task_alt" unchecked-icon="highlight_off" />
             </div>
           </div>
         </q-card-section>
@@ -124,51 +79,22 @@
 
         <q-separator />
 
-        <q-card-section
-          style="max-height: 60vh; min-height: 60vh"
-          class="scroll"
-        >
+        <q-card-section style="max-height: 60vh; min-height: 60vh" class="scroll">
           <div style="margin-bottom: 10px">
-            <q-input
-              color="orange-5"
-              rounded
-              outlined
-              v-model="emptyEditNewsItem.title"
-              label="Titel"
-            />
+            <q-input color="orange-5" rounded outlined v-model="emptyEditNewsItem.title" label="Titel" />
           </div>
           <div>
-            <q-input
-              color="orange-5"
-              rounded
-              outlined
-              v-model="emptyEditNewsItem.content"
-              type="textarea"
-              label="Inhalt"
-            />
+            <q-input color="orange-5" rounded outlined v-model="emptyEditNewsItem.content" type="textarea"
+              label="Inhalt" />
           </div>
           <div style="display: flex; flex-direction: row; flex-wrap: wrap">
             <div>
-              <q-radio
-                class="custom-checkbox"
-                v-model="switchGroup"
-                label="All groups"
-                val="0"
-                color="cyan"
-                checked-icon="task_alt"
-                unchecked-icon="highlight_off"
-              />
+              <q-radio class="custom-checkbox" v-model="switchGroup" label="All groups" val="0" color="cyan"
+                checked-icon="task_alt" unchecked-icon="highlight_off" />
             </div>
             <div v-for="group in groups" :key="group.id">
-              <q-radio
-                class="custom-checkbox"
-                v-model="switchGroup"
-                :label="group.name"
-                :val="group.id"
-                color="cyan"
-                checked-icon="task_alt"
-                unchecked-icon="highlight_off"
-              />
+              <q-radio class="custom-checkbox" v-model="switchGroup" :label="group.name" :val="group.id" color="cyan"
+                checked-icon="task_alt" unchecked-icon="highlight_off" />
             </div>
           </div>
         </q-card-section>
@@ -199,7 +125,7 @@ onMounted(async () => {
   groups.value = await store.getGroups();
 });
 
-const switchGroup = ref("0");
+const switchGroup = ref('0');
 const createModal = ref(false);
 const editModal = ref(false);
 
@@ -222,15 +148,17 @@ const emptyEditNewsItem = ref({
 const showCreateModal = () => {
   createModal.value = true;
 };
+
 const showModalEditNews = (id: number) => {
   emptyEditNewsItem.value.id = id;
   let newsToUpdate = news.value.find(x => x.id === id);
   if (newsToUpdate) {
-    debugger;
+
     if (newsToUpdate.title) emptyEditNewsItem.value.title = newsToUpdate.title;
     if (newsToUpdate.content)
       emptyEditNewsItem.value.content = newsToUpdate.content;
-    switchGroup.value = "3";
+
+      switchGroup.value = newsToUpdate.forAllGroups ?  '0' : newsToUpdate.groupId;
   }
   editModal.value = true;
 };
@@ -249,7 +177,7 @@ const createNews = () => {
   });
 };
 
-const editNews =()=>{
+const editNews = () => {
   if (switchGroup.value === '0') {
     emptyEditNewsItem.value.forAllGroups = true;
     emptyEditNewsItem.value.groupId = null;
