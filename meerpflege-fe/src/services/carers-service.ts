@@ -17,13 +17,13 @@ export class CarersService {
       };
       
     static async editCarer(item: Carer): Promise<boolean> {
-        const response = await api.put(Endpoints.createCarers+'/'+item.id, item);
+        const response = await api.put(Endpoints.editCarers+'/'+item.id, item);
         console.log(response.data);
         return true as boolean;
       };
       
     static async deleteCarer(id: number): Promise<boolean> {
-        const response = await api.delete(Endpoints.createCarers+'/'+id);
+        const response = await api.delete(Endpoints.deleteCarers+'/'+id);
         console.log(response.data);
         return true as boolean;
       };

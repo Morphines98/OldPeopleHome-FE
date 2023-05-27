@@ -100,6 +100,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/CarersPage.vue'),
         meta: { roles: [UserRole.Admin] },
       },
+      {
+        path: 'activities',
+        component: () => import('pages/ActivitiesPage.vue'),
+        meta: { roles: [UserRole.Admin] },
+      },
     ],
     meta: { roles: [UserRole.Admin] },
   },
@@ -112,6 +117,7 @@ const routes: RouteRecordRaw[] = [
         path: 'news',
         component: () => import('pages/AdminNews.vue'),
       },
+      
     ],
   },
 
