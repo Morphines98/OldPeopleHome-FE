@@ -52,6 +52,11 @@
         <q-separator />
 
         <q-card-section style="max-height: 60vh; min-height: 60vh" class="scroll">
+          <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+            <q-uploader ref="uploader" label="Upload profile picture" auto-upload accept=".jpg, image/*"
+              :factory="uploadFactory" @uploaded="onUploaded" />
+          </div>
+
           <div style="margin-bottom: 10px">
             <q-input dense color="orange-5" rounded outlined v-model="emptyNurse.name" label="Name" />
           </div>
@@ -175,6 +180,18 @@ const showEditModal = (id: number) => {
   editModal.value = true;
   editModal.value = true;
 };
+
+const uploadFactory = (files) => {
+  const formData = new FormData();
+  formData.append('file', files[0]);
+  return axios.post('/upload', formData);
+}
+
+const onUploaded = ({ files }) => {
+  const file = files[0];
+  emptyNurse.value.avatarUrl = file.url;
+  console.log(emptyNurse);
+}
 
 const createNurse = () => {
   emptyNurse.value.groupId = parseInt(switchGroup.value);

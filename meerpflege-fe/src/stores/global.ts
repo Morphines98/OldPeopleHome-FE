@@ -12,6 +12,8 @@ interface User {
   refreshToken: string;
   token: string;
   role: UserRole | null;
+  name: string;
+  email: string;
 }
 
 export enum UserRole {
@@ -65,6 +67,8 @@ export const useAccountStore = defineStore('account', {
         refreshToken: 'refreshToken123',
         token: user.token,
         role: UserRole[user.role as keyof typeof UserRole] || null,
+        name: user.name,
+        email: user.email,
       };
       switch (this.userRole) {
         case UserRole.Admin:
@@ -83,6 +87,7 @@ export const useAccountStore = defineStore('account', {
       this.jwtToken = null;
       this.refreshToken = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('user')
       this.router.push('Login');
     },
 
