@@ -16,5 +16,15 @@ export class Endpoints {
   static putGroup = 'HomeGroups';
   static deleteGroup = 'HomeGroups';
 
+  static getNurses = 'Nurses';
+  static createNurse = 'Nurses';
+  static deleteNurse = 'Nurses';
+  static editNurse = 'Nurses';
+
+  static getCarers= 'Carers';
+  static createCarers= 'Carers';
+  static editCarers= 'Carers';
+  static deleteCarers= 'Carers';
+
 
 }

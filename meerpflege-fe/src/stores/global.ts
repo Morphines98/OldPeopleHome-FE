@@ -2,9 +2,11 @@ import { defineStore } from 'pinia';
 import { getgroups } from 'process';
 import { Group } from 'src/models/Group';
 import { NewsItem } from 'src/models/NewsItem';
+import { Nurse } from 'src/models/Nurse';
 import { AccountService } from 'src/services/account-service';
 import { GroupsService } from 'src/services/groups-service';
 import { NewsService } from 'src/services/news-service';
+import { NurseService } from 'src/services/nurses-service';
 
 interface User {
   refreshToken: string;
@@ -63,7 +65,6 @@ export const useAccountStore = defineStore('account', {
     },
     async deleteGroup(id: number){
       await GroupsService.deleteGroup(id);
-    },
-    // async getNurses
+    }
   },
 });
