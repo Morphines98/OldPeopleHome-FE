@@ -26,5 +26,5 @@ export class Endpoints {
   static editCarers= 'Carers';
   static deleteCarers= 'Carers';
 
-
+  static upload = 'Utility'
 }

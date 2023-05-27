@@ -88,7 +88,11 @@ export const useAccountStore = defineStore('account', {
       this.refreshToken = null;
       localStorage.removeItem('token');
       localStorage.removeItem('user')
-      this.router.push('Login');
+      this.router.push('/');
+    },
+
+    async uploadFile(file){
+      return await AccountService.upload(file);
     },
 
     async getNews() {
