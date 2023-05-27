@@ -10,21 +10,6 @@
           <span>News</span>
         </div>
       </RouterLink>
-      <RouterLink to="/application/groups" style="text-decoration: none;">
-      <div class="dashboard-bubble">
-        <span>Groups</span>
-      </div>
-    </RouterLink >
-    <RouterLink to="/application/nurses" style="text-decoration: none;">
-      <div class="dashboard-bubble" style="background-color: #007C80;">
-        <span>Nurses</span>
-      </div>
-    </RouterLink>
-    <RouterLink to="/application/carers" style="text-decoration: none;">
-        <div class="dashboard-bubble" style="background-color: #A556AF">
-          <span>Carers</span>
-        </div>
-      </RouterLink>
       <div class="dashboard-bubble" style="background-color: #1365C4;">
         <span>Activities</span>
       </div>
@@ -34,12 +19,7 @@
       <div class="dashboard-bubble" style="background-color: #82C387;">
         <span>Visits</span>
       </div>
-      <div class="dashboard-bubble" style="background-color: #5FADE7;">
-        <span>Account management</span>
-      </div>
-      <div class="dashboard-bubble" style="background-color: #A556AF;">
-        <span>People</span>
-      </div>
+
       <div class="dashboard-bubble" style="background-color: #A556AF;">
         <span>to be improved</span>
       </div>

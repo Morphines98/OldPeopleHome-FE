@@ -158,7 +158,7 @@ const showModalEditNews = (id: number) => {
     if (newsToUpdate.content)
       emptyEditNewsItem.value.content = newsToUpdate.content;
 
-      switchGroup.value = newsToUpdate.forAllGroups ?  '0' : newsToUpdate.groupId;
+    switchGroup.value = newsToUpdate.forAllGroups ? '0' : newsToUpdate.groupId;
   }
   editModal.value = true;
 };

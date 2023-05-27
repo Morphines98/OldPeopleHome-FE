@@ -7,7 +7,7 @@ import {
 } from 'vue-router';
 
 import routes from './routes';
-import { useAccountStore } from 'src/stores/global';
+import { UserRole, useAccountStore } from 'src/stores/global';
 
 /*
  * If not building with SSR mode, you can
@@ -34,10 +34,26 @@ export default route(function (/* { store, ssrContext } */) {
 
   Router.beforeEach((to, from, next) => {
     const auth = useAccountStore();
-    if (!to.meta.public && !auth.isLoggedIn) {
-      next({ path: '/login' });
+    const role = auth.userRole;
+
+    if (to.matched.some((record) => record.meta.roles)) {
+      // this route requires auth, check if logged in
+      // if not, redirect to login page
+      if (!auth.isLoggedIn) {
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath },
+        });
+      } else {
+        // check if the user role is one of the roles allowed for this route
+        if (to.matched.some((record) => record.meta.roles.includes(role))) {
+          next();
+        } else {
+          next({ name: 'Error' }); // or redirect to a different error page
+        }
+      }
     } else {
-      next();
+      next(); // make sure to always call next()!
     }
   });
 
