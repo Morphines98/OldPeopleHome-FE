@@ -64,8 +64,6 @@ export const useAccountStore = defineStore('account', {
       this.refreshToken = 'dana';
 
       localStorage.setItem('token', this.jwtToken);
-      localStorage.setItem('user', JSON.stringify(this.user));
-
 
       this.user = {
         refreshToken: 'refreshToken123',
@@ -75,6 +73,9 @@ export const useAccountStore = defineStore('account', {
         email: user.email,
         profilePictureUrl: '',
       };
+
+      localStorage.setItem('user', JSON.stringify(this.user));
+
       switch (this.userRole) {
         case UserRole.Admin:
           this.router.push('Dashboard');

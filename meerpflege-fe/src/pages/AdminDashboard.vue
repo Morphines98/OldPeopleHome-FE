@@ -33,9 +33,11 @@
       <!-- <div class="dashboard-bubble" style="background-color: #BAE3E3;">
         <span>Medications</span>
       </div> -->
+      <RouterLink to="/application/visits" style="text-decoration: none;">
       <div class="dashboard-bubble" style="background-color: #82C387;">
         <span>Visits</span>
       </div>
+      </RouterLink>
       <!-- <div class="dashboard-bubble" style="background-color: #5FADE7;">
         <span>Account management</span>
       </div> -->

@@ -80,7 +80,9 @@ const routes: RouteRecordRaw[] = [
     path: '/reset-password',
     name: 'ResetPassword',
     component: () => import('layouts/PublicLayout.vue'),
-    children: [{ path: '', component: () => import('pages/ResetPassword.vue') }],
+    children: [
+      { path: '', component: () => import('pages/ResetPassword.vue') },
+    ],
     meta: {
       public: true,
     },
@@ -119,6 +121,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/EldersPage.vue'),
         meta: { roles: [UserRole.Admin] },
       },
+      {
+        path: 'visits',
+        component: () => import('pages/VisitsPage.vue'),
+        meta: { roles: [UserRole.Admin] },
+      },
     ],
     meta: { roles: [UserRole.Admin] },
   },
@@ -131,7 +138,6 @@ const routes: RouteRecordRaw[] = [
         path: 'news',
         component: () => import('pages/AdminNews.vue'),
       },
-      
     ],
   },
 

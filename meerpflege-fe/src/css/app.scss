@@ -62,3 +62,149 @@ a:visited {
 .bg-generic-color{
   background: #007c80 !important;
 }
+
+
+
+.custom--option--group .q-option-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.custom--option--group .q-option-group .q-checkbox__label {
+  color: $optionGroupColor;
+  font-size: $mediumFontSize;
+}
+
+.custom--option--group .q-option-group .q-checkbox {
+  border: solid 1px $borderWithShadow;
+  border-radius: $mainPadding;
+  margin-top: $mediumPadding;
+  padding: $smallMediumPadding $mainMediumPadding;
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+.custom--option--group .q-option-group .q-checkbox:hover {
+  background-color: $cardContrastBackground;
+}
+
+.custom--option--group .q-option-group .q-checkbox[aria-checked='true'] {
+  background-color: #00737a !important;
+}
+
+.custom--option--group
+  .q-option-group
+  .q-checkbox[aria-checked='true']
+  .q-checkbox__label {
+  color: white;
+}
+
+.custom--option--group .q-option-group .q-checkbox__bg,
+.custom--option--group .q-option-group .q-checkbox__inner {
+  display: none;
+}
+
+.time-section {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+
+.time-section .spacer {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+
+.date-interval {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.date-interval--date-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.displayed-date {
+  color: #00737A;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.custom--option--group {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-time-input {
+  width: 100px;
+}
+
+.time-section .spacer {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.flex {
+  display: flex;
+  height: 100%;
+}
+
+.day-time-settings-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.day-time-settings-interval {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.advanced-settings-card {
+  background-color: #E9EBF0;
+  border: 0.5px solid #B9B9B9;
+  border-radius: 20px;
+  stroke-linejoin: miter;
+  stroke-linecap: butt;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding: 10px 10px 10px 10px;
+  margin-top: 15px;
+}
+
+.advanced-settings-card h1 {
+  color: #00737A;
+  font-size: 18px;
+  font-weight: bold;
+  margin: unset;
+  margin-bottom: 10px;
+}
+
+
+.time-section {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+.working-hours--description {
+  font-size: 12px;
+  color: #626b76;
+}
+
+.left-block,
+.right-block {
+  flex: 1;
+  padding: 1rem;
+}
