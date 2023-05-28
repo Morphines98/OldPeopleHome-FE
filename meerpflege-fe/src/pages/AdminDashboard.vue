@@ -30,21 +30,21 @@
         <span>Activities</span>
       </div>
     </RouterLink>
-      <div class="dashboard-bubble" style="background-color: #BAE3E3;">
+      <!-- <div class="dashboard-bubble" style="background-color: #BAE3E3;">
         <span>Medications</span>
-      </div>
+      </div> -->
       <div class="dashboard-bubble" style="background-color: #82C387;">
         <span>Visits</span>
       </div>
-      <div class="dashboard-bubble" style="background-color: #5FADE7;">
+      <!-- <div class="dashboard-bubble" style="background-color: #5FADE7;">
         <span>Account management</span>
-      </div>
+      </div> -->
       <div class="dashboard-bubble" style="background-color: #A556AF;">
-        <span>People</span>
+        <span>Elders</span>
       </div>
-      <div class="dashboard-bubble" style="background-color: #A556AF;">
+      <!-- <div class="dashboard-bubble" style="background-color: #A556AF;">
         <span>to be improved</span>
-      </div>
+      </div> -->
     </div>
 
   </q-page>
