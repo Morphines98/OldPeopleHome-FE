@@ -7,7 +7,7 @@ export interface Nurse {
   groupId: number | null;
   isDeleted: boolean;
   startWorkingDate: Date;
-  avatarUrl: string | null;
+  nurseAvatarUrl: string | null;
   email: string;
   phoneNumber:string | null;
 }

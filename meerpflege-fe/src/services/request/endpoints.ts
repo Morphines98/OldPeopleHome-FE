@@ -31,5 +31,5 @@ export class Endpoints {
   static editActivities= 'Activities';
   static deleteActivities= 'Activities';
 
-
+  static upload = 'Utility'
 }

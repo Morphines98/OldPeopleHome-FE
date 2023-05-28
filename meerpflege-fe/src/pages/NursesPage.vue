@@ -18,7 +18,7 @@
         @click="showEditModal(nurse.id)">
 
         <q-avatar size="100px">
-          <img :src="nurse.avatarUrl ?? 'https://cdn.quasar.dev/img/avatar.png'" />
+          <img :src="nurse.nurseAvatarUrl ?? 'https://cdn.quasar.dev/img/avatar.png'" />
         </q-avatar>
         <q-item-section style="padding: 5%">
           <q-item-label class="item-title text-h6">
@@ -135,6 +135,7 @@
 </template>
 <script setup lang="ts">
 import { datetime } from '@intlify/core-base';
+import axios from 'src/boot/axios';
 import { Group } from 'src/models/Group';
 import { Nurse } from 'src/models/Nurse';
 import { useAccountStore } from 'src/stores/global';
@@ -184,12 +185,25 @@ const showEditModal = (id: number) => {
 const uploadFactory = (files) => {
   const formData = new FormData();
   formData.append('file', files[0]);
-  return axios.post('/upload', formData);
+
+  return new Promise((resolve, reject) => {
+    const token = acountStore.jwtToken;
+    resolve({
+      url: 'http://localhost:5000/api/utility',
+      method: 'POST',
+      headers: [
+        { name: 'Authorization', value: `Bearer ${token}` }
+      ]
+    })
+  })
 }
 
 const onUploaded = ({ files }) => {
   const file = files[0];
-  emptyNurse.value.avatarUrl = file.url;
+  const serverResponse = JSON.parse(file.xhr.responseText);
+  console.log(serverResponse);
+
+  emptyNurse.value.nurseAvatarUrl = serverResponse.url;
   console.log(emptyNurse);
 }
 
