@@ -5,6 +5,7 @@ export class Endpoints {
   static signup = 'account/sign-up';
   static signout = 'account/sign-out';
   static refreshToken = 'account/refresh-token';
+  static resetPassword='account/resetPassword';
 
   static getNews = 'news';
   static createNews = 'news';

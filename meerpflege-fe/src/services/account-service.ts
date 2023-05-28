@@ -17,4 +17,14 @@ export class AccountService {
     const response = await api.post(Endpoints.upload, file);
     return response.data;
   }
+
+  static async resetPassword(resetModel: {
+    userId: string;
+    newPassword: string;
+    resetToken: string;
+  })
+  {
+    const response = await anonymousApi.post(Endpoints.resetPassword, resetModel);
+    return response.data;
+  }
 }

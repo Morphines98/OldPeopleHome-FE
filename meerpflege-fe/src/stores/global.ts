@@ -87,11 +87,20 @@ export const useAccountStore = defineStore('account', {
       this.jwtToken = null;
       this.refreshToken = null;
       localStorage.removeItem('token');
-      localStorage.removeItem('user')
+      localStorage.removeItem('user');
       this.router.push('/');
     },
 
-    async uploadFile(file){
+    async resetPassword(resetModel: {
+      userId: string;
+      newPassword: string;
+      resetToken: string;
+    }) {
+      const response = await AccountService.resetPassword(resetModel);
+      this.router.push('/login');
+    },
+
+    async uploadFile(file) {
       return await AccountService.upload(file);
     },
 
