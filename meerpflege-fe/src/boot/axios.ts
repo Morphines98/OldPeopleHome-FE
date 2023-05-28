@@ -34,7 +34,7 @@ export default boot(({ app }) => {
 
   api.interceptors.request.use(
     async (config) => {
-      const access_token = auth.jwtToken;
+      const access_token = auth.user?.token;
       config.headers.setAuthorization(`Bearer ${access_token}`);
       config.headers.setAccept('application/json');
 

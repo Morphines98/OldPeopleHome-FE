@@ -18,6 +18,7 @@ export class Endpoints {
   static deleteGroup = 'HomeGroups';
 
   static getNurses = 'Nurses';
+  static nurseProfile = 'Nurses/GetProfileInfo'
   static createNurse = 'Nurses';
   static deleteNurse = 'Nurses';
   static editNurse = 'Nurses';
@@ -25,8 +26,8 @@ export class Endpoints {
   static getCarers= 'Carers';
   static createCarers= 'Carers';
   static editCarers= 'Carers';
-  static deleteCarers= 'Carers'; 
-  
+  static deleteCarers= 'Carers';
+
   static getActivities= 'Activities';
   static createActivities= 'Activities';
   static editActivities= 'Activities';

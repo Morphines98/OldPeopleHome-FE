@@ -4,7 +4,7 @@ import { NurseService } from "src/services/nurses-service";
 
 export const useNurseStore = defineStore('nurse', {
     actions: {
-    
+
       async getNurses()
       {
         return await NurseService.getNurses();
@@ -18,6 +18,8 @@ export const useNurseStore = defineStore('nurse', {
       async editNurse(item: Nurse){
         await NurseService.editNurse(item);
       },
+      async getNurse(){
+      return await NurseService.getNurse();
+      }
     },
   });
-  

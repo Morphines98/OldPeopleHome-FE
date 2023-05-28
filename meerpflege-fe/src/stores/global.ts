@@ -7,6 +7,7 @@ import { AccountService } from 'src/services/account-service';
 import { GroupsService } from 'src/services/groups-service';
 import { NewsService } from 'src/services/news-service';
 import { NurseService } from 'src/services/nurses-service';
+import { useNurseStore } from './nurse-store';
 
 interface User {
   refreshToken: string;
@@ -14,6 +15,7 @@ interface User {
   role: UserRole | null;
   name: string;
   email: string;
+  profilePictureUrl: string;
 }
 
 export enum UserRole {
@@ -36,6 +38,7 @@ export const useAccountStore = defineStore('account', {
     })() as User | null,
     jwtToken: localStorage.getItem('token') as string | null,
     refreshToken: 'dana' as string | null,
+    nurseStore: useNurseStore()
   }),
   getters: {
     isLoggedIn(): boolean {
@@ -61,7 +64,8 @@ export const useAccountStore = defineStore('account', {
       this.refreshToken = 'dana';
 
       localStorage.setItem('token', this.jwtToken);
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(this.user));
+
 
       this.user = {
         refreshToken: 'refreshToken123',
@@ -69,18 +73,23 @@ export const useAccountStore = defineStore('account', {
         role: UserRole[user.role as keyof typeof UserRole] || null,
         name: user.name,
         email: user.email,
+        profilePictureUrl: '',
       };
       switch (this.userRole) {
         case UserRole.Admin:
           this.router.push('Dashboard');
           break;
         case UserRole.Nurse:
+          const profileInfo = await this.nurseStore.getNurse();
+          this.user.profilePictureUrl = profileInfo.nurseAvatarUrl;
+          this.user.name = profileInfo.name;
           this.router.push('NurseDashboard');
           break;
         case UserRole.Carer:
           this.router.push('CarerDashboard');
           break;
       }
+      console.log(this.user);
     },
 
     logOut() {
