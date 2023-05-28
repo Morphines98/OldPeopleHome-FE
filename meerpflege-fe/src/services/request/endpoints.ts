@@ -31,7 +31,12 @@ export class Endpoints {
   static getActivities= 'Activities';
   static createActivities= 'Activities';
   static editActivities= 'Activities';
-  static deleteActivities= 'Activities';
+  static deleteActivities= 'Activities'; 
+  
+  static getElders= 'Elders';
+  static createElders= 'Elders';
+  static editElders= 'Elders';
+  static deleteElders= 'Elders';
 
   static upload = 'Utility'
 }
