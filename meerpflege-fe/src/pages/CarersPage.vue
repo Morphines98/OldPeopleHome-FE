@@ -37,10 +37,10 @@
               {{ carer.name + ' ' + carer.lastName }}
             </q-item-label>
             <q-item-label caption class="q-pt-none">{{
-              'Adress City:'+carer.city + ' '+carer.adress+' '+'PostCode'+carer.postCode
+              'Adress: '+carer.adress+' '+carer.city +' PostCode: '+carer.postCode
             }}</q-item-label>
             <q-item-label caption class="q-pt-none">{{
-              'Infos Phone Number:'+carer.phoneNumber + ' Email:'+carer.email
+              'Infos: Phone Number: '+carer.phoneNumber + ' Email: '+carer.email
             }}</q-item-label>
           </q-item-section>
   

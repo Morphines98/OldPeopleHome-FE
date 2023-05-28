@@ -39,9 +39,11 @@
       <!-- <div class="dashboard-bubble" style="background-color: #5FADE7;">
         <span>Account management</span>
       </div> -->
+    <RouterLink to="/application/elders" style="text-decoration: none;">
       <div class="dashboard-bubble" style="background-color: #A556AF;">
         <span>Elders</span>
       </div>
+    </RouterLink>
       <!-- <div class="dashboard-bubble" style="background-color: #A556AF;">
         <span>to be improved</span>
       </div> -->

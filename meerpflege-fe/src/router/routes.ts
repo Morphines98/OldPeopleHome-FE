@@ -114,6 +114,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/ActivitiesPage.vue'),
         meta: { roles: [UserRole.Admin] },
       },
+      {
+        path: 'elders',
+        component: () => import('pages/EldersPage.vue'),
+        meta: { roles: [UserRole.Admin] },
+      },
     ],
     meta: { roles: [UserRole.Admin] },
   },
