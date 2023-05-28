@@ -25,7 +25,12 @@ export class Endpoints {
   static getCarers= 'Carers';
   static createCarers= 'Carers';
   static editCarers= 'Carers';
-  static deleteCarers= 'Carers';
+  static deleteCarers= 'Carers'; 
+  
+  static getActivities= 'Activities';
+  static createActivities= 'Activities';
+  static editActivities= 'Activities';
+  static deleteActivities= 'Activities';
 
   static upload = 'Utility'
 }

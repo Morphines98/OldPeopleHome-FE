@@ -25,9 +25,11 @@
           <span>Carers</span>
         </div>
       </RouterLink>
+      <RouterLink to="/application/activities" style="text-decoration: none;">
       <div class="dashboard-bubble" style="background-color: #1365C4;">
         <span>Activities</span>
       </div>
+    </RouterLink>
       <div class="dashboard-bubble" style="background-color: #BAE3E3;">
         <span>Medications</span>
       </div>
