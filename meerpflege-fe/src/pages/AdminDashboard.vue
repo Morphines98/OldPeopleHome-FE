@@ -10,6 +10,11 @@
           <span>News</span>
         </div>
       </RouterLink>
+      <RouterLink to="/application/wallitems" style="text-decoration: none;">
+      <div class="dashboard-bubble" style="background-color: #5FADE7;">
+        <span>Wall</span>
+      </div>
+    </RouterLink>
       <RouterLink to="/application/groups" style="text-decoration: none;">
       <div class="dashboard-bubble">
         <span>Groups</span>
@@ -38,9 +43,6 @@
         <span>Visits</span>
       </div>
       </RouterLink>
-      <!-- <div class="dashboard-bubble" style="background-color: #5FADE7;">
-        <span>Account management</span>
-      </div> -->
     <RouterLink to="/application/elders" style="text-decoration: none;">
       <div class="dashboard-bubble" style="background-color: #A556AF;">
         <span>Elders</span>

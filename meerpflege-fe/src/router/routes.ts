@@ -126,6 +126,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/VisitsPage.vue'),
         meta: { roles: [UserRole.Admin] },
       },
+      {
+        path: 'wallitems',
+        component: () => import('pages/WallItemsPage.vue'),
+        meta: { roles: [UserRole.Admin] },
+      },
     ],
     meta: { roles: [UserRole.Admin] },
   },

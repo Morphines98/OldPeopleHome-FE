@@ -37,6 +37,11 @@ export class Endpoints {
   static createElders= 'Elders';
   static editElders= 'Elders';
   static deleteElders= 'Elders';
+  
+  static getWall= 'WallItems';
+  static createWall= 'WallItems';
+  static editWall= 'WallItems';
+  static deleteWall= 'WallItems';
 
   static upload = 'Utility'
 }
