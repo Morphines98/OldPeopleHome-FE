@@ -14,7 +14,7 @@
         <span>Activities</span>
       </div>
       <div class="dashboard-bubble" style="background-color: #BAE3E3;">
-        <span>Medications</span>
+        <span>Elders</span>
       </div>
       <div class="dashboard-bubble" style="background-color: #82C387;">
         <span>Visits</span>
