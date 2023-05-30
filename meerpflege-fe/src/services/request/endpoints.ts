@@ -12,6 +12,12 @@ export class Endpoints {
   static deleteNews ='news';
   static updateNews ='news';
 
+  static getNurseNews = 'NurseNewsItems';
+  static getNurseActivities = 'NurseActivities';
+  static getNurseElders = 'NurseElders';
+  static getNurseWall = 'NurseWallItems';
+  static postNurseWall = 'NurseWallItems';
+
   static getGroups = 'HomeGroups';
   static postGroup = 'HomeGroups';
   static putGroup = 'HomeGroups';
@@ -41,7 +47,9 @@ export class Endpoints {
   static getWall= 'WallItems';
   static createWall= 'WallItems';
   static editWall= 'WallItems';
-  static deleteWall= 'WallItems';
+  static deleteWall= 'WallItems'; 
+  
+
 
   static upload = 'Utility'
 }

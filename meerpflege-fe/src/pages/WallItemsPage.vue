@@ -150,8 +150,6 @@ const editModal = ref(false);
 
 const groups = ref([] as Group[]);
 const switchGroup = ref('0');
-const date = new Date();
-const autoplay = ref(true);
 onMounted(async () => {
   wallItems.value = await store.getWallItems();
   wallItems.value.forEach((element) => {
@@ -212,7 +210,7 @@ const onUploaded = ({ files }) => {
   console.log(empthyWall);
 };
 </script>
-<style scoped>
+<style >
 .flex {
   height: auto;
 }

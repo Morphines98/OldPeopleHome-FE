@@ -4,7 +4,7 @@
     <q-header elevated class="bg-white text-home-green-color">
       <q-toolbar>
         <q-toolbar-title>
-          <RouterLink to="/dashboard" active-class="active-link" style="text-decoration: none;">
+          <RouterLink to="../NurseDashboard" active-class="active-link" style="text-decoration: none;">
             <q-avatar>
               <img src="~/src/assets/logo.png">
             </q-avatar>

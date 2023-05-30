@@ -137,11 +137,22 @@ const routes: RouteRecordRaw[] = [
 
   {
     path: '/nurse',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/NurseLayout.vue'),
     children: [
       {
-        path: 'news',
-        component: () => import('pages/AdminNews.vue'),
+        path: 'newsNurses',
+        component: () => import('pages/NursePages/NurseNewsPage.vue'),
+      },
+      {
+        path: 'wallNurses',
+        component: () => import('pages/NursePages/NurseWallPage.vue'),
+      },
+      {
+        path: 'activityNurses',
+        component: () => import('pages/NursePages/NurseActivityPage.vue'),
+      },{
+        path: 'eldersNurses',
+        component: () => import('pages/NursePages/NurseEldersPage.vue'),
       },
     ],
   },
