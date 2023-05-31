@@ -19,7 +19,53 @@
           </q-badge>
         </div>
       </div>
-      <div>
+      <div v-if="isPageLoading" class="q-pa-md">
+      <q-item style="max-width: 100%">
+        <q-item-section avatar>
+          <q-skeleton type="QAvatar" />
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label>
+            <q-skeleton type="text" />
+          </q-item-label>
+          <q-item-label caption>
+            <q-skeleton type="text" width="65%" />
+          </q-item-label>
+        </q-item-section>
+      </q-item>
+
+      <q-item style="max-width: 100%">
+        <q-item-section avatar>
+          <q-skeleton type="QAvatar" />
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label>
+            <q-skeleton type="text" />
+          </q-item-label>
+          <q-item-label caption>
+            <q-skeleton type="text" width="90%" />
+          </q-item-label>
+        </q-item-section>
+      </q-item>
+
+      <q-item style="max-width: 100%">
+        <q-item-section avatar>
+          <q-skeleton type="QAvatar" />
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label>
+            <q-skeleton type="text" width="35%" />
+          </q-item-label>
+          <q-item-label caption>
+            <q-skeleton type="text" />
+          </q-item-label>
+        </q-item-section>
+      </q-item>
+    </div>
+      <div v-if="!isPageLoading" >
         <q-item
           style="display: flex; align-items: center"
           v-for="carer in carers"
@@ -263,9 +309,12 @@ import { useCarersStore } from 'src/stores/carer-store';
   const carers = ref([] as Carer[]);
   const createModal = ref(false);
   const editModal = ref(false);
+  const isPageLoading = ref(false);
   
   onMounted(async () => {
+    isPageLoading.value=true;
     carers.value = await store.getCarers();
+    isPageLoading.value=false;
   });
   
   const emptyCarer = ref({} as Carer);

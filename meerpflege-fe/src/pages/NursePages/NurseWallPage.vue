@@ -19,7 +19,20 @@
           </q-badge>
         </div>
       </div>
-      <div
+      <div  v-if="isPageLoading" class="q-pa-md" style="display: flex; align-items: center; justify-content: center;">
+    <div style="width: 80%">
+      <q-skeleton height="400px" square animation="fade" />
+
+
+        <div class="col q-pl-sm">
+          <q-skeleton type="text" square width="30%" animation="fade" />
+          <q-skeleton type="text" square height="20px" animation="fade" />
+          <q-skeleton type="text" square height="20px" width="75%" animation="fade" />
+      </div>
+    </div>
+  </div>
+ <div v-if="!isPageLoading" >
+      <div 
         v-for="wallItem in wallItems"
         :key="wallItem.id"
         style="display: flex; align-items: center; justify-content: center"
@@ -55,6 +68,7 @@
             </div>
           </q-card>
         </div>
+      </div>
       </div>
       <q-dialog v-model="createModal">
         <q-card class="create-modal">
@@ -145,13 +159,16 @@ import { useNurseWallStore } from 'src/stores/nurse-stores/nurse-wall-store';
   var acountStore = useAccountStore();
   const wallItems = ref([] as WallItem[]);
   const createModal = ref(false);
+  const isPageLoading = ref(false);
   
   const switchGroup = ref('0');
   onMounted(async () => {
+    isPageLoading.value = true;
     wallItems.value = await store.getNurseWall();
     wallItems.value.forEach((element) => {
       element.slide = element.wallItemAttachments?.[0].name;
     });
+    isPageLoading.value = false;
   });
   
   const empthyWall = ref({

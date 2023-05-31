@@ -13,7 +13,53 @@
         </q-badge>
       </div>
     </div>
-    <div>
+    <div v-if="isPageLoading" class="q-pa-md">
+        <q-item  style="max-width: 100%">
+          <q-item-section avatar>
+            <q-skeleton type="QAvatar" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>
+              <q-skeleton type="text" />
+            </q-item-label>
+            <q-item-label caption>
+              <q-skeleton type="text" width="65%" />
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item style="max-width: 100%">
+          <q-item-section avatar>
+            <q-skeleton type="QAvatar" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>
+              <q-skeleton type="text" />
+            </q-item-label>
+            <q-item-label caption>
+              <q-skeleton type="text" width="90%" />
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item style="max-width: 100%">
+          <q-item-section avatar>
+            <q-skeleton type="QAvatar" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>
+              <q-skeleton type="text" width="35%" />
+            </q-item-label>
+            <q-item-label caption>
+              <q-skeleton type="text" />
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+      </div>
+    <div v-if="!isPageLoading" >
       <q-item style="display: flex; align-items: center" v-for="nurse in nurses" :key="nurse.id" clickable
         @click="showEditModal(nurse.id)">
 
@@ -147,13 +193,16 @@ var acountStore = useAccountStore();
 const nurses = ref([] as Nurse[]);
 const createModal = ref(false);
 const editModal = ref(false);
+const isPageLoading = ref(false);
 
 const groups = ref([] as Group[]);
 const switchGroup = ref('0');
 const date = new Date();
 onMounted(async () => {
+  isPageLoading.value = true;
   nurses.value = await store.getNurses();
   groups.value = await acountStore.getGroups();
+  isPageLoading.value = false;
 });
 
 const emptyNurse = ref({} as Nurse);

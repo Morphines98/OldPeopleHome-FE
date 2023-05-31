@@ -8,5 +8,9 @@ export const useNurseNewsStore = defineStore('news', {
       {
         return await NurseNewsService.getNurseNews();
       },
+      async getNurseNewsById(id:number)
+      {
+        return await NurseNewsService.getNurseNewsById(id);
+      }
     },
   });

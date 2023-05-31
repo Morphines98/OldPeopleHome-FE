@@ -13,7 +13,13 @@
         </q-badge>
       </div>
     </div>
-<div class="dashboard-bubble-container" >
+    <div v-if="isPageLoading" class="dashboard-bubble-container">
+      <q-skeleton type="circle" size="150px" />
+      <q-skeleton type="circle" size="150px" />
+      <q-skeleton type="circle" size="150px" />
+      <q-skeleton type="circle" size="150px" />
+  </div>
+<div v-if="!isPageLoading" class="dashboard-bubble-container" >
   <div class="dashboard-bubble" :style="{ backgroundColor: generatorColors()  }" v-for="group in groups"
       :key="group.id"
       clickable
@@ -85,6 +91,7 @@ var store = useAccountStore();
 const groups = ref([] as Group[]);
 const createModal = ref(false);
 const editModal = ref(false);
+const isPageLoading = ref(false);
 const editGroupItem = ref({
   id: 0,
   name: '',
@@ -96,7 +103,9 @@ const emptyGroupItem = ref({
 
 
 onMounted(async () => {
+  isPageLoading.value = true;
   groups.value = await store.getGroups();
+  isPageLoading.value = false;
 });
 
 const createGroup = () => {

@@ -117,6 +117,9 @@ export const useAccountStore = defineStore('account', {
     async getNews() {
       return await NewsService.getNews();
     },
+    async getNewsById(id:number) {
+      return await NewsService.getNewsById(id);
+    },
     async deleteNews(id: number) {
       return await NewsService.deleteNews(id);
     },

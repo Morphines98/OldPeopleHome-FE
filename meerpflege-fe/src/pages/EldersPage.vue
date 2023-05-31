@@ -19,7 +19,53 @@
         </q-badge>
       </div>
     </div>
-    <div>
+    <div v-if="isPageLoading" class="q-pa-md">
+      <q-item style="max-width: 100%">
+        <q-item-section avatar>
+          <q-skeleton type="QAvatar" />
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label>
+            <q-skeleton type="text" />
+          </q-item-label>
+          <q-item-label caption>
+            <q-skeleton type="text" width="65%" />
+          </q-item-label>
+        </q-item-section>
+      </q-item>
+
+      <q-item style="max-width: 100%">
+        <q-item-section avatar>
+          <q-skeleton type="QAvatar" />
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label>
+            <q-skeleton type="text" />
+          </q-item-label>
+          <q-item-label caption>
+            <q-skeleton type="text" width="90%" />
+          </q-item-label>
+        </q-item-section>
+      </q-item>
+
+      <q-item style="max-width: 100%">
+        <q-item-section avatar>
+          <q-skeleton type="QAvatar" />
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label>
+            <q-skeleton type="text" width="35%" />
+          </q-item-label>
+          <q-item-label caption>
+            <q-skeleton type="text" />
+          </q-item-label>
+        </q-item-section>
+      </q-item>
+    </div>
+    <div v-if="!isPageLoading">
       <q-item
         style="display: flex; align-items: center"
         v-for="elder in elders"
@@ -39,11 +85,16 @@
           <q-item-label caption class="q-pt-none">{{
             'Hobies: ' + elder.hobies
           }}</q-item-label>
-          <q-item-label caption class="q-pt-none">{{
-            'Date Of Birth: ' + new Date(elder.dateOfBirth).toLocaleString('en-GB', { timeZone: 'UTC' })}}
+          <q-item-label caption class="q-pt-none"
+            >{{
+              'Date Of Birth: ' +
+              new Date(elder.dateOfBirth).toLocaleString('en-GB', {
+                timeZone: 'UTC',
+              })
+            }}
           </q-item-label>
           <q-item-label caption class="q-pt-none">{{
-            'Health: ' +  elder.medicalConditions
+            'Health: ' + elder.medicalConditions
           }}</q-item-label>
           <q-item-label caption class="q-pt-none">{{
             'Carer:' + createCarerName(elder.carerId)
@@ -51,7 +102,6 @@
           <q-item-label caption class="q-pt-none">{{
             'Group: ' + groups.find((g) => g.id == elder.groupId)?.name
           }}</q-item-label>
-          
         </q-item-section>
 
         <q-item-section side class="flex items-center">
@@ -62,11 +112,19 @@
             class="q-ma-sm"
           ></q-icon>
         </q-item-section>
-        <q-item-section style="max-width: 50px;">
-          <q-circular-progress reverse :value="getYearsDiff(elder.dateOfBirth, date)" :max="100" size="45px"
-            :thickness="1" color="generic-color" track-color="grey-5" class="q-ma-md" />
+        <q-item-section style="max-width: 50px">
+          <q-circular-progress
+            reverse
+            :value="getYearsDiff(elder.dateOfBirth, date)"
+            :max="100"
+            size="45px"
+            :thickness="1"
+            color="generic-color"
+            track-color="grey-5"
+            class="q-ma-md"
+          />
           <q-tooltip anchor="top middle" self="center middle">
-            Has  {{ calculateTime(elder.dateOfBirth) }}  old
+            Has {{ calculateTime(elder.dateOfBirth) }} old
           </q-tooltip>
         </q-item-section>
       </q-item>
@@ -202,7 +260,7 @@
             </div>
           </div>
           <q-select
-          aria-required="true"
+            aria-required="true"
             rounded
             outlined
             v-model="selectedCarer"
@@ -291,7 +349,7 @@
             </div>
           </div>
           <q-select
-          aria-required="true"
+            aria-required="true"
             rounded
             outlined
             v-model="selectedCarer"
@@ -319,7 +377,7 @@ import { Group } from 'src/models/Group';
 import { useCarersStore } from 'src/stores/carer-store';
 import { useElderStore } from 'src/stores/elder-store';
 import { useAccountStore } from 'src/stores/global';
-import { onMounted, ref ,computed} from 'vue';
+import { onMounted, ref, computed } from 'vue';
 
 var store = useElderStore();
 var carerStore = useCarersStore();
@@ -332,11 +390,14 @@ const groups = ref([] as Group[]);
 const switchGroup = ref('0');
 const createModal = ref(false);
 const editModal = ref(false);
+const isPageLoading = ref(false);
 
 onMounted(async () => {
+  isPageLoading.value = true;
   elders.value = await store.getElders();
   carers.value = await carerStore.getCarers();
   groups.value = await groupStore.getGroups();
+  isPageLoading.value = false;
 });
 
 const empthyElder = ref({} as Elder);
@@ -362,11 +423,16 @@ const showEditModal = (id: number) => {
     if (elderToUpdate.hobies) empthyElder.value.hobies = elderToUpdate.hobies;
     if (elderToUpdate.medicalConditions)
       empthyElder.value.medicalConditions = elderToUpdate.medicalConditions;
-    if (elderToUpdate.avatarUrl) empthyElder.value.avatarUrl = elderToUpdate.avatarUrl;
-    if (elderToUpdate.carerId) empthyElder.value.carerId = elderToUpdate.carerId;
-    if (elderToUpdate.groupId) empthyElder.value.groupId = elderToUpdate.groupId;
+    if (elderToUpdate.avatarUrl)
+      empthyElder.value.avatarUrl = elderToUpdate.avatarUrl;
+    if (elderToUpdate.carerId)
+      empthyElder.value.carerId = elderToUpdate.carerId;
+    if (elderToUpdate.groupId)
+      empthyElder.value.groupId = elderToUpdate.groupId;
     switchGroup.value = elderToUpdate.groupId;
-    selectedCarer.value = carers.value.find(c =>c.id == elderToUpdate?.carerId);
+    selectedCarer.value = carers.value.find(
+      (c) => c.id == elderToUpdate?.carerId
+    );
   }
   editModal.value = true;
 };
@@ -388,7 +454,7 @@ const deleteElder = (id: number) => {
 };
 
 const editElder = () => {
-    empthyElder.value.groupId = parseInt(switchGroup.value);
+  empthyElder.value.groupId = parseInt(switchGroup.value);
   empthyElder.value.carerId = selectedCarer.value.id;
   store.editElders(empthyElder.value).then(() => {
     location.reload();
@@ -437,28 +503,36 @@ const dateStringStart = computed(() =>
     : 'No date selected'
 );
 const calculateTime = (startDate: Date) => {
+  const targetDate = new Date(startDate);
+  const currentDate = new Date();
 
-const targetDate = new Date(startDate);
-const currentDate = new Date();
+  const timeDiff = Math.abs(currentDate.getTime() - targetDate.getTime());
 
-const timeDiff = Math.abs(currentDate.getTime() - targetDate.getTime());
+  const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
+  const yearsInMilliseconds = years * (1000 * 60 * 60 * 24 * 365);
 
-const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
-const yearsInMilliseconds = years * (1000 * 60 * 60 * 24 * 365);
+  const months = Math.floor(
+    (timeDiff - yearsInMilliseconds) / (1000 * 60 * 60 * 24 * 30.4375)
+  );
+  const monthsInMilliseconds = months * (1000 * 60 * 60 * 24 * 30.4375);
 
-const months = Math.floor((timeDiff - yearsInMilliseconds) / (1000 * 60 * 60 * 24 * 30.4375));
-const monthsInMilliseconds = months * (1000 * 60 * 60 * 24 * 30.4375);
+  const days = Math.floor(
+    (timeDiff - yearsInMilliseconds - monthsInMilliseconds) /
+      (1000 * 60 * 60 * 24)
+  );
 
-const days = Math.floor((timeDiff - yearsInMilliseconds - monthsInMilliseconds) / (1000 * 60 * 60 * 24));
+  const formattedTimePassed = `${years} year${
+    years !== 1 ? 's' : ''
+  }, ${months} month${months !== 1 ? 's' : ''}, and ${days} day${
+    days !== 1 ? 's' : ''
+  }`;
 
-const formattedTimePassed = `${years} year${years !== 1 ? 's' : ''}, ${months} month${months !== 1 ? 's' : ''}, and ${days} day${days !== 1 ? 's' : ''}`;
-
-return formattedTimePassed;
-}
+  return formattedTimePassed;
+};
 const getYearsDiff = (startDate: Date, endDate: Date) => {
-const timeDiff = endDate.getTime() - new Date(startDate.toString()).getTime();
+  const timeDiff = endDate.getTime() - new Date(startDate.toString()).getTime();
 
-const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
-return daysPassed;
+  const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
+  return daysPassed;
 };
 </script>

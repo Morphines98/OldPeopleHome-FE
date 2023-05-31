@@ -17,6 +17,8 @@ export class Endpoints {
   static getNurseElders = 'NurseElders';
   static getNurseWall = 'NurseWallItems';
   static postNurseWall = 'NurseWallItems';
+  static postNurseActivityPresence = 'ActivityPresence';
+  static getNurseActivityPresence = 'ActivityPresence';
 
   static getGroups = 'HomeGroups';
   static postGroup = 'HomeGroups';

@@ -8,6 +8,12 @@ export class NewsService {
     console.log(response.data);
     const news = response.data as NewsItem[];
     return news;
+  } 
+  static async getNewsById(id:number): Promise<NewsItem> {
+    const response = await api.get(Endpoints.getNews+'/'+id);
+    console.log(response.data);
+    const news = response.data as NewsItem;
+    return news;
   }
   static async deleteNews(id:number): Promise<boolean> {
     const response = await api.delete(Endpoints.deleteNews+'/'+id);

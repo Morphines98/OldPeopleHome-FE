@@ -19,56 +19,96 @@
         </q-badge>
       </div>
     </div>
-    <div class="dashboard-bubble-container" style="align-items: center;">
-    <div v-for="activity in activities"
-    :key="activity.id" >
-      <q-card class="my-card" style="min-width: 250px;" flat bordered>
-        <q-card-section class="q-pt-xs" style="display: flex;justify-content: space-between;align-items: center;">
-            <div>
-          <div class="text-overline">{{ activity.location }}</div>
-          <div class="text-h5 q-mt-sm q-mb-xs">{{activity.title}}</div>
-          <div class="text-caption text-grey">
-            {{activity.description}}
-          </div></div>
-          <q-btn flat round @click="deleteActivity(activity.id)" color="red" icon="delete" />
-        </q-card-section>
-
-        <q-list>
-          <q-item >
-            <q-item-section avatar>
-              <q-icon color="primary" name="groups" />
-            </q-item-section>
-
-            <q-item-section>
-              <q-item-label> Group</q-item-label>
-              <q-item-label caption> {{ groups.find(x=> x.id === activity.groupId)?.name }}</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item >
-            <q-item-section avatar>
-              <q-icon color="red" name="schedule" />
-            </q-item-section>
-
-            <q-item-section>
-                <q-item-label> Time</q-item-label>
-              <q-item-label caption>{{new Date(activity.date).toLocaleString('en-GB', { timeZone: 'UTC' })}}</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item >
-            <q-item-section avatar>
-              <q-icon color="amber" name="info" />
-            </q-item-section>
-
-            <q-item-section>
-                <q-item-label> Special Conditions</q-item-label>
-              <q-item-label caption>{{ activity.specialCondition }}</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-card>
+    <div v-if="isPageLoading" style="align-items: center" class="dashboard-bubble-container">
+        
+          <q-skeleton class="q-card q-card--bordered q-card--flat no-shadow my-card" height="380px" width="230px"></q-skeleton>
+          <br />
+          <q-skeleton class="q-card q-card--bordered q-card--flat no-shadow my-card" height="380px" width="230px"></q-skeleton>
+          <br />
+          <q-skeleton class="q-card q-card--bordered q-card--flat no-shadow my-card" height="380px" width="230px"></q-skeleton>
     </div>
+    <div
+      v-if="!isPageLoading"
+      class="dashboard-bubble-container"
+      style="align-items: center"
+    >
+      <div v-for="activity in activities" :key="activity.id">
+        <q-card
+          class="my-card"
+          style="min-width: 250px; min-height: 380px"
+          flat
+          bordered
+        >
+          <q-card-section
+            class="q-pt-xs"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <div>
+              <div class="text-overline">{{ activity.location }}</div>
+              <div class="text-h5 q-mt-sm q-mb-xs">{{ activity.title }}</div>
+              <div class="text-caption text-grey">
+                {{ activity.description }}
+              </div>
+            </div>
+            <q-btn
+              flat
+              round
+              @click="deleteActivity(activity.id)"
+              color="red"
+              icon="delete"
+            />
+          </q-card-section>
+
+          <q-list style="position: absolute; bottom: 10px">
+            <q-item>
+              <q-item-section avatar>
+                <q-icon color="primary" name="groups" />
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label> Group</q-item-label>
+                <q-item-label caption>
+                  {{
+                    groups.find((x) => x.id === activity.groupId)?.name
+                  }}</q-item-label
+                >
+              </q-item-section>
+            </q-item>
+
+            <q-item>
+              <q-item-section avatar>
+                <q-icon color="red" name="schedule" />
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label> Time</q-item-label>
+                <q-item-label caption>{{
+                  new Date(activity.date).toLocaleString('en-GB', {
+                    timeZone: 'UTC',
+                  })
+                }}</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <q-item>
+              <q-item-section avatar>
+                <q-icon color="amber" name="info" />
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label> Special Conditions</q-item-label>
+                <q-item-label caption>{{
+                  activity.specialCondition
+                }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-card>
+      </div>
     </div>
 
     <!-- modal create -->
@@ -219,11 +259,13 @@ const groups = ref([] as Group[]);
 const switchGroup = ref('0');
 const activities = ref([] as Activity[]);
 const createModal = ref(false);
-const editModal = ref(false);
+const isPageLoading = ref(false);
 
 onMounted(async () => {
+  isPageLoading.value = true;
   activities.value = await activityStore.getActivities();
   groups.value = await store.getGroups();
+  isPageLoading.value = false;
 });
 
 const emptyActivity = ref({} as Activity);
@@ -242,11 +284,11 @@ const createActivity = () => {
   console.log(emptyActivity.value);
 };
 
-const deleteActivity = (id:number) =>{
+const deleteActivity = (id: number) => {
   activityStore.deleteActivities(id).then(() => {
     location.reload();
   });
-}
+};
 
 let now = new Date();
 let year = now.getFullYear();

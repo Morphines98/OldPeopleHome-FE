@@ -19,6 +19,19 @@
         </q-badge>
       </div>
     </div>
+    <div  v-if="isPageLoading" class="q-pa-md" style="display: flex; align-items: center; justify-content: center;">
+    <div style="width: 80%">
+      <q-skeleton height="400px" square animation="fade" />
+
+
+        <div class="col q-pl-sm">
+          <q-skeleton type="text" square width="30%" animation="fade" />
+          <q-skeleton type="text" square height="20px" animation="fade" />
+          <q-skeleton type="text" square height="20px" width="75%" animation="fade" />
+      </div>
+    </div>
+  </div>
+  <div v-if="!isPageLoading">
     <div
       v-for="wallItem in wallItems"
       :key="wallItem.id"
@@ -56,7 +69,7 @@
           </div>
         </q-card>
       </div>
-    </div>
+    </div></div>
     <q-dialog v-model="createModal">
       <q-card class="create-modal">
         <q-card-section>
@@ -142,20 +155,25 @@ import { useWallStore } from 'src/stores/wall-store';
 import { WallItem, WallItemAttachment } from 'src/models/WallItem';
 import { onMounted, ref } from 'vue';
 import { Group } from 'src/models/Group';
+
 var store = useWallStore();
 var acountStore = useAccountStore();
 const wallItems = ref([] as WallItem[]);
 const createModal = ref(false);
 const editModal = ref(false);
+const isPageLoading = ref(false);
 
 const groups = ref([] as Group[]);
 const switchGroup = ref('0');
+
 onMounted(async () => {
+  isPageLoading.value = true;
   wallItems.value = await store.getWallItems();
   wallItems.value.forEach((element) => {
     element.slide = element.wallItemAttachments?.[0].name;
   });
   groups.value = await acountStore.getGroups();
+  isPageLoading.value = false;
 });
 
 const empthyWall = ref({
