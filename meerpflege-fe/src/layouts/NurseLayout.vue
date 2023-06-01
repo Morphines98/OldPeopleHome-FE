@@ -4,7 +4,7 @@
     <q-header elevated class="bg-white text-home-green-color">
       <q-toolbar>
         <q-toolbar-title>
-          <RouterLink to="../NurseDashboard" active-class="active-link" style="text-decoration: none;">
+          <RouterLink to="../CarerDashboard" active-class="active-link" style="text-decoration: none;">
             <q-avatar>
               <img src="~/src/assets/logo.png">
             </q-avatar>
@@ -20,7 +20,7 @@
       <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
         <q-list padding>
 
-          <RouterLink to="../NurseDashboard" active-class="active-link" style="text-decoration: none;color: black;">
+          <RouterLink to="../CarerDashboard" active-class="active-link" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="dashboard" />
@@ -68,6 +68,7 @@
           </q-item>
           </RouterLink>
 
+          <RouterLink to="/nurse/visitsNurses" active-class="active-link" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="calendar_month" />
@@ -77,6 +78,7 @@
               Visits
             </q-item-section>
           </q-item>
+          </RouterLink>
 
         <RouterLink to="/nurse/eldersNurses" active-class="active-link" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>

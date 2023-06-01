@@ -104,16 +104,17 @@
           </q-item>
         </RouterLink>
 
+        <RouterLink to="/application/visits" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="calendar_month" />
             </q-item-section>
 
             <q-item-section>
-              Visits
+              Visits 
             </q-item-section>
           </q-item>
-
+        </RouterLink>
           <RouterLink to="/application/elders" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>

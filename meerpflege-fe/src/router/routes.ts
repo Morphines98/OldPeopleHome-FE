@@ -4,6 +4,7 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    name: 'default',
     redirect: (to) => {
       // Perform the redirect in a function.
       // The `to` argument contains the information about the route being navigated to.
@@ -20,9 +21,8 @@ const routes: RouteRecordRaw[] = [
           return '/dashboard';
         case UserRole.Nurse:
           return '/nursedashboard';
-        case UserRole.Carer:
+        case UserRole.CareTaker:
           return '/carerdashboard';
-        // Add other roles as necessary
         default:
           return '/error'; // If user's role is not recognized, redirect to error page
       }
@@ -62,10 +62,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         component: () => import('pages/CarerDashboard.vue'),
-        meta: { roles: [UserRole.Carer] },
+        meta: { roles: [UserRole.CareTaker] },
       },
     ],
-    meta: { roles: [UserRole.Carer] },
+    meta: { roles: [UserRole.CareTaker] },
   },
   {
     path: '/login',
@@ -136,25 +136,60 @@ const routes: RouteRecordRaw[] = [
   },
 
   {
+    path: '/carer',
+    component: () => import('layouts/CarerLayout.vue'),
+    children: [
+      {
+        path: 'visits',
+        component: () => import('pages/NursePages/NurseVisitsPage.vue'),
+        meta: { roles: [UserRole.CareTaker] },
+      },
+      {
+        path: 'wall',
+        component: () => import('pages/CarerPages/CarerWallPage.vue'),
+      },
+      {
+        path: 'activity',
+        component: () => import('pages/CarerPages/CarerActivitiesPage.vue'),
+      },
+      {
+        path: 'news',
+        component: () => import('pages/CarerPages/CarerNewsPage.vue'),
+        meta: { roles: [UserRole.CareTaker] },
+      },
+    ],
+  },
+  
+  {
     path: '/nurse',
     component: () => import('layouts/NurseLayout.vue'),
     children: [
       {
         path: 'newsNurses',
         component: () => import('pages/NursePages/NurseNewsPage.vue'),
+        meta: { roles: [UserRole.Nurse] },
       },
       {
         path: 'wallNurses',
         component: () => import('pages/NursePages/NurseWallPage.vue'),
+        meta: { roles: [UserRole.Nurse] },
       },
       {
         path: 'activityNurses',
         component: () => import('pages/NursePages/NurseActivityPage.vue'),
+        meta: { roles: [UserRole.Nurse] },
       },{
         path: 'eldersNurses',
         component: () => import('pages/NursePages/NurseEldersPage.vue'),
+        meta: { roles: [UserRole.Nurse] },
+      },
+      {
+        path: 'visitsNurses',
+        component: () => import('pages/NursePages/NurseVisitsPage.vue'),
+        meta: { roles: [UserRole.Nurse] },
       },
     ],
+    meta: { roles: [UserRole.Nurse] }
   },
 
   // Always leave this as last one,

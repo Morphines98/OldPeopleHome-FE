@@ -20,6 +20,10 @@ export class Endpoints {
   static postNurseActivityPresence = 'ActivityPresence';
   static getNurseActivityPresence = 'ActivityPresence';
 
+  static getCarerNews = 'CarersNews';
+  static getCarerActivities = 'CarersActivities';
+  static getCarerWall = 'CarerWall';
+
   static getGroups = 'HomeGroups';
   static postGroup = 'HomeGroups';
   static putGroup = 'HomeGroups';

@@ -25,9 +25,11 @@
         <span>Elders</span>
       </div>
     </RouterLink>
+    <RouterLink to="/nurse/visitsNurses" style="text-decoration: none;">
       <div class="dashboard-bubble" style="background-color: #82C387;">
         <span>Visits</span>
       </div>
+    </RouterLink>
     </div>
 
   </q-page>

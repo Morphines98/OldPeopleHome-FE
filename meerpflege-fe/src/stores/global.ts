@@ -21,7 +21,7 @@ interface User {
 export enum UserRole {
   Admin = 'Admin',
   Nurse = 'Nurse',
-  Carer = 'CareTaker',
+  CareTaker = 'CareTaker',
   // add other roles as needed
 }
 
@@ -54,12 +54,14 @@ export const useAccountStore = defineStore('account', {
       return this.user?.role == UserRole.Nurse;
     },
     isCarer(): boolean {
-      return this.user?.role == UserRole.Carer;
+      return this.user?.role == UserRole.CareTaker;
     },
   },
   actions: {
     async logIn(model: { email: string; password: string }) {
       const user = await AccountService.login(model);
+
+      console.log(user);
       this.jwtToken = user.token;
       this.refreshToken = 'dana';
 
@@ -86,7 +88,8 @@ export const useAccountStore = defineStore('account', {
           this.user.name = profileInfo.name;
           this.router.push('NurseDashboard');
           break;
-        case UserRole.Carer:
+        case UserRole.CareTaker:
+          
           this.router.push('CarerDashboard');
           break;
       }

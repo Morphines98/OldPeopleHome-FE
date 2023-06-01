@@ -46,7 +46,7 @@ export default route(function (/* { store, ssrContext } */) {
         });
       } else {
         // check if the user role is one of the roles allowed for this route
-        if (to.matched.some((record) => record.meta.roles.includes(role))) {
+        if (to.matched.some((record) => record.meta.roles && role)) {
           next();
         } else {
           next({ name: 'Error' }); // or redirect to a different error page
