@@ -39,7 +39,7 @@
     >
       <div style="width: 70% ;margin-bottom: 5rem;">
         <q-card>
-          <q-carousel swipeable animated v-model="wallItem.slide" thumbnails infinite>
+          <q-carousel swipeable animated v-model="wallItem.slide" thumbnails infinite v-model:fullscreen="fullscreen">
             <q-carousel-slide
               v-for="wallAtach in wallItem.wallItemAttachments"
               :key="wallAtach.id"
@@ -49,6 +49,18 @@
               style="background-size: contain; background-repeat: no-repeat;"
             >
             </q-carousel-slide>
+            <template v-slot:control>
+            <q-carousel-control
+          position="bottom-right"
+          :offset="[18, 18]"
+        >
+          <q-btn
+            push round dense color="white" text-color="primary"
+            :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
+            @click="fullscreen = !fullscreen"
+          />
+        </q-carousel-control>
+      </template>
           </q-carousel>
           <div
             style="
@@ -162,6 +174,7 @@ const wallItems = ref([] as WallItem[]);
 const createModal = ref(false);
 const editModal = ref(false);
 const isPageLoading = ref(false);
+const fullscreen = ref(false);
 
 const groups = ref([] as Group[]);
 const switchGroup = ref('0');

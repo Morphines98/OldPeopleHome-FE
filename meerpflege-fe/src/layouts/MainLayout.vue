@@ -19,7 +19,7 @@
     <q-drawer v-model="rightDrawerOpen" side="right" behavior="mobile" elevated>
       <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
         <q-list padding>
-
+          <RouterLink to="/dashboard" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="dashboard" />
@@ -29,7 +29,9 @@
               Dashboard
             </q-item-section>
           </q-item>
+          </RouterLink>
 
+          <RouterLink to="/application/news" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="newspaper" />
@@ -39,7 +41,10 @@
               News
             </q-item-section>
           </q-item>
+          </RouterLink>
 
+
+          <RouterLink to="/application/groups" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="group" />
@@ -49,7 +54,9 @@
               Groups
             </q-item-section>
           </q-item>
+          </RouterLink>
 
+          <RouterLink to="/application/nurses" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="emergency" />
@@ -59,7 +66,9 @@
               Nurses
             </q-item-section>
           </q-item>
+          </RouterLink>
 
+          <RouterLink to="/application/carers" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="family_restroom" />
@@ -69,6 +78,9 @@
               Carers
             </q-item-section>
           </q-item>
+        </RouterLink>
+
+        <RouterLink to="/application/activities" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="celebration" />
@@ -78,16 +90,19 @@
               Activities
             </q-item-section>
           </q-item>
+        </RouterLink>
 
+        <RouterLink to="/application/wallitems" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
-              <q-icon color="generic-color" name="medication" />
+              <q-icon color="generic-color" name="wallpaper" />
             </q-item-section>
 
             <q-item-section>
-              Medication
+              Wall
             </q-item-section>
           </q-item>
+        </RouterLink>
 
           <q-item clickable v-ripple>
             <q-item-section avatar>
@@ -99,6 +114,7 @@
             </q-item-section>
           </q-item>
 
+          <RouterLink to="/application/elders" style="text-decoration: none;color: black;">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon color="generic-color" name="elderly_woman" />
@@ -108,6 +124,7 @@
               Elders
             </q-item-section>
           </q-item>
+        </RouterLink>
 
           <q-item clickable v-ripple style="margin-top: 15px" @click="logout">
             <q-item-section avatar>
@@ -125,10 +142,10 @@
       <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
         <div class="absolute-bottom bg-transparent">
           <q-avatar size="56px" class="q-mb-sm">
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            <img  :src="(auth.user?.profilePictureUrl !='' && auth.user?.profilePictureUrl != 'undefine')?auth.user?.profilePictureUrl:'https://cdn.quasar.dev/img/boy-avatar.png'">
           </q-avatar>
-          <div class="text-weight-bold">{{ auth.user?.name ?? 'nume prenume' }}</div>
-          <div>{{ auth.user?.email }}</div>
+          <div class="text-weight-bold">{{ auth.user?.name ?? '' }}</div>
+          <div>{{ auth.user?.email }} - {{ auth.user?.role }}</div>
         </div>
       </q-img>
     </q-drawer>
