@@ -70,10 +70,10 @@
       </div>
     </div>
     <div style="display: flex; justify-content: center; margin-top: 10px;">
-      <q-btn color="generic-color" rounded>
-      <q-icon left size="2em" name="upload" />
-      <div style="margin-right: 10px;">Save</div>
-    </q-btn>
+      <q-btn color="generic-color" rounded @click="saveData">
+        <q-icon left size="2em" name="upload" />
+        <div style="margin-right: 10px;">Save</div>
+      </q-btn>
     </div>
 
   </q-page>
@@ -82,14 +82,13 @@
 
 <script setup lang="ts">
 import { DayOfWeek, DayTimeline, OptionGroup, WorkingTimeForDay } from 'src/models/Visits';
-import { computed, ref } from 'vue';
+import { useVisitsStore } from 'src/stores/visits-store';
+import { computed, onMounted, ref } from 'vue';
+
+var visitsStore = useVisitsStore();
 
 const dayIds = ref([] as string[]);
 const oldDayIds = ref([] as string[]);
-
-dayIds.value.push('mon');
-dayIds.value.push('wed');
-dayIds.value.push('fri');
 
 const allDays = ref([] as DayOfWeek[]);
 allDays.value.push({ dayId: 'mon', displayName: 'M', fullName: 'Monday' } as unknown as DayOfWeek);
@@ -104,24 +103,15 @@ oldDayIds.value = dayIds.value;
 
 const workingTimeForDay = ref([] as WorkingTimeForDay[]);
 
-const startHour = '15:30';
-const endHour = '16:30';
+onMounted(async () => {
 
+  let result = await visitsStore.getVisits();
+  result.forEach(visits => {
+    workingTimeForDay.value.push(visits);
+    dayIds.value.push(visits.dayId);
+  });
 
-let workingTime = new WorkingTimeForDay('mon' as string);
-workingTime.workingIntervals?.push(new DayTimeline(startHour, endHour));
-workingTime.workingIntervals?.push(new DayTimeline(startHour, endHour));
-workingTime.workingIntervals?.push(new DayTimeline(startHour, endHour));
-workingTimeForDay.value.push(workingTime);
-
-workingTime = new WorkingTimeForDay('wed' as unknown as string);
-workingTime.workingIntervals?.push(new DayTimeline(startHour, endHour));
-workingTime.workingIntervals?.push(new DayTimeline(startHour, endHour));
-workingTimeForDay.value.push(workingTime);
-
-workingTime = new WorkingTimeForDay('fri' as unknown as string);
-workingTime.workingIntervals?.push(new DayTimeline(startHour, endHour));
-workingTimeForDay.value.push(workingTime);
+});
 
 const defaultStartHour = '08:00';
 const defaultEndHour = '18:00';
@@ -180,6 +170,19 @@ function handleCheckboxChange(value, checked) {
     const bIndex = allDays.value.findIndex(day => day.dayId.toString() === b.dayId.toString());
     return aIndex - bIndex;
   }) || [];
+}
+
+const saveData = () => {
+  let body = {
+    workingTimes: workingTimeForDay.value
+  }
+
+  console.log(body);
+
+  visitsStore.updateVisits(workingTimeForDay.value).then(() => {
+    location.reload();
+  });
+
 }
 
 </script>

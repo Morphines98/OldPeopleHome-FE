@@ -39,18 +39,19 @@ export class Endpoints {
   static getActivities= 'Activities';
   static createActivities= 'Activities';
   static editActivities= 'Activities';
-  static deleteActivities= 'Activities'; 
-  
+  static deleteActivities= 'Activities';
+
   static getElders= 'Elders';
   static createElders= 'Elders';
   static editElders= 'Elders';
   static deleteElders= 'Elders';
-  
+
   static getWall= 'WallItems';
   static createWall= 'WallItems';
   static editWall= 'WallItems';
-  static deleteWall= 'WallItems'; 
-  
+  static deleteWall= 'WallItems';
+
+  static updateVisits ='Visits'
 
 
   static upload = 'Utility'
