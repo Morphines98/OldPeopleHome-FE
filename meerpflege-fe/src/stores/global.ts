@@ -92,7 +92,10 @@ export const useAccountStore = defineStore('account', {
           
           this.router.push('CarerDashboard');
           break;
+
       }
+      localStorage.setItem('user', JSON.stringify(this.user));
+
       console.log(this.user);
     },
 

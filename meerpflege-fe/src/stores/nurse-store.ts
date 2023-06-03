@@ -21,5 +21,6 @@ export const useNurseStore = defineStore('nurse', {
       async getNurse(){
       return await NurseService.getNurse();
       }
+
     },
   });

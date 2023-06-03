@@ -168,6 +168,11 @@ const routes: RouteRecordRaw[] = [
         path: 'newsNurses',
         component: () => import('pages/NursePages/NurseNewsPage.vue'),
         meta: { roles: [UserRole.Nurse] },
+      }, 
+      {
+        path: 'profile',
+        component: () => import('pages/NurseProfilePage.vue'),
+        meta: { roles: [UserRole.Nurse] },
       },
       {
         path: 'wallNurses',
