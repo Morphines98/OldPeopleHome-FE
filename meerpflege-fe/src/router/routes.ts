@@ -145,6 +145,11 @@ const routes: RouteRecordRaw[] = [
         meta: { roles: [UserRole.CareTaker] },
       },
       {
+        path: 'profile',
+        component: () => import('pages/CarerProfilePage.vue'),
+        meta: { roles: [UserRole.CareTaker] },
+      },
+      {
         path: 'wall',
         component: () => import('pages/CarerPages/CarerWallPage.vue'),
       },

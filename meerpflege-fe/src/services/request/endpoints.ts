@@ -36,6 +36,7 @@ export class Endpoints {
   static editNurse = 'Nurses';
 
   static getCarers= 'Carers';
+  static getCarer= 'Carers/GetProfileInfo';
   static createCarers= 'Carers';
   static editCarers= 'Carers';
   static deleteCarers= 'Carers';

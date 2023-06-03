@@ -9,6 +9,10 @@ export const useCarersStore = defineStore('carers', {
       {
         return await CarersService.getCarers();
       },
+      async getCarer()
+      {
+        return await CarersService.getCarer();
+      },
       async createCarers(item: Carer){
         await CarersService.createCarers(item);
       },

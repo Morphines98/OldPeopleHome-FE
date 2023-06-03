@@ -9,6 +9,13 @@ export class CarersService {
       const news = response.data as Carer[];
       return news;
     };
+    
+    static async getCarer(): Promise<Carer> {
+      const response = await api.get(Endpoints.getCarer);
+      console.log(response.data)
+      const news = response.data as Carer;
+      return news;
+    };
 
     static async createCarers(item: Carer): Promise<boolean> {
         const response = await api.post(Endpoints.createCarers, item);

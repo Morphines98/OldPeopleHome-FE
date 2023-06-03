@@ -8,6 +8,7 @@ import { GroupsService } from 'src/services/groups-service';
 import { NewsService } from 'src/services/news-service';
 import { NurseService } from 'src/services/nurses-service';
 import { useNurseStore } from './nurse-store';
+import { useCarersStore } from './carer-store';
 
 interface User {
   refreshToken: string;
@@ -38,7 +39,9 @@ export const useAccountStore = defineStore('account', {
     })() as User | null,
     jwtToken: localStorage.getItem('token') as string | null,
     refreshToken: 'dana' as string | null,
-    nurseStore: useNurseStore()
+    nurseStore: useNurseStore(),
+    carerStore : useCarersStore()
+
   }),
   getters: {
     isLoggedIn(): boolean {
@@ -89,10 +92,10 @@ export const useAccountStore = defineStore('account', {
           this.router.push('NurseDashboard');
           break;
         case UserRole.CareTaker:
-          
+          const profileInfoCarer = await this.carerStore.getCarer();
+          this.user.name = profileInfoCarer.name;
           this.router.push('CarerDashboard');
           break;
-
       }
       localStorage.setItem('user', JSON.stringify(this.user));
 
