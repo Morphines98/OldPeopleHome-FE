@@ -40,8 +40,7 @@ export const useAccountStore = defineStore('account', {
     jwtToken: localStorage.getItem('token') as string | null,
     refreshToken: 'dana' as string | null,
     nurseStore: useNurseStore(),
-    carerStore : useCarersStore()
-
+    carerStore: useCarersStore(),
   }),
   getters: {
     isLoggedIn(): boolean {
@@ -61,6 +60,10 @@ export const useAccountStore = defineStore('account', {
     },
   },
   actions: {
+    async forgotPasswordRequest(model: { email: string }) {
+      await AccountService.forgotPasswordRequest(model);
+    },
+
     async logIn(model: { email: string; password: string }) {
       const user = await AccountService.login(model);
 
@@ -126,7 +129,7 @@ export const useAccountStore = defineStore('account', {
     async getNews() {
       return await NewsService.getNews();
     },
-    async getNewsById(id:number) {
+    async getNewsById(id: number) {
       return await NewsService.getNewsById(id);
     },
     async deleteNews(id: number) {

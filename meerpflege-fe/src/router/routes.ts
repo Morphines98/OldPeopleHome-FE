@@ -88,6 +88,17 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: '/forgot-password',
+    name: 'ForgotPassword',
+    component: () => import('layouts/PublicLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/ForgotPassword.vue') },
+    ],
+    meta: {
+      public: true,
+    },
+  },
+  {
     path: '/application',
     component: () => import('layouts/MainLayout.vue'),
     children: [

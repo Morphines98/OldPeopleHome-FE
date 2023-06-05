@@ -27,4 +27,13 @@ export class AccountService {
     const response = await anonymousApi.post(Endpoints.resetPassword, resetModel);
     return response.data;
   }
+
+
+  static async forgotPasswordRequest(resetModel: {
+    email: string;
+  })
+  {
+    const response = await anonymousApi.post(Endpoints.forgotPassword, resetModel);
+    return response.data;
+  }
 }

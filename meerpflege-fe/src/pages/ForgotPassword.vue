@@ -13,14 +13,6 @@
                 type="email"
                 label="email"
               />
-              <q-input
-                square
-                filled
-                clearable
-                v-model="password"
-                type="password"
-                label="password"
-              />
             </q-form>
           </q-card-section>
           <q-card-actions class="q-px-md">
@@ -29,21 +21,10 @@
               color="light-green-7"
               size="lg"
               class="full-width"
-              label="Login"
+              label="Send email"
               @click="login"
             />
           </q-card-actions>
-          <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Not reigistered? Created an Account</p>
-            <p class="text-grey-6">
-              Forgot password?
-              <RouterLink
-                to="/forgot-password"
-                style="text-decoration: none; color: black"
-              > Click here
-              </RouterLink>
-            </p>
-          </q-card-section>
         </q-card>
       </div>
     </div>
@@ -64,11 +45,8 @@ console.log('da');
 
 const store = useAccountStore();
 const email = ref('');
-const password = ref('');
 
 const login = async () => {
-  await store.logIn({ email: email.value, password: password.value });
-
-  console.log(store.jwtToken);
+  await store.forgotPasswordRequest({ email: email.value });
 };
 </script>
