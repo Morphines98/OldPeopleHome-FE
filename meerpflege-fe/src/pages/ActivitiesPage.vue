@@ -167,7 +167,7 @@
             />
           </div>
 
-          <q-input dense readonly filled v-model="dateStringStart">
+          <q-input label="Time to start " dense readonly filled v-model="dateStringStart">
             <template v-slot:prepend>
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy

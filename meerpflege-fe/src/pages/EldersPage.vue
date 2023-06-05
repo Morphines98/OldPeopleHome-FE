@@ -193,7 +193,7 @@
               label="Medical Condition"
             />
           </div>
-          <q-input dense readonly filled v-model="dateStringStart">
+          <q-input label="Birth date" dense readonly filled v-model="dateStringStart">
             <template v-slot:prepend>
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy
