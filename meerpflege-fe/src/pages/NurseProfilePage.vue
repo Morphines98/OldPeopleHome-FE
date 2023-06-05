@@ -121,7 +121,6 @@ const editProfile = () => {
     else
     location.reload();
   });
-  console.log(nurse.value);
 };
 
 const uploadFactory = (files) => {
@@ -143,9 +142,7 @@ const uploadFactory = (files) => {
 const onUploaded = ({ files }) => {
   const file = files[0];
   const serverResponse = JSON.parse(file.xhr.responseText);
-  console.log(serverResponse);
 
   nurse.value.nurseAvatarUrl = serverResponse.url;
-  console.log(nurse);
 }
 </script>

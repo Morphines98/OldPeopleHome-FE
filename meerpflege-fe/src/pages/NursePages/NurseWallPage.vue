@@ -227,13 +227,11 @@ import { useNurseWallStore } from 'src/stores/nurse-stores/nurse-wall-store';
   const onUploaded = ({ files }) => {
     const file = files[0];
     const serverResponse = JSON.parse(file.xhr.responseText);
-    console.log(serverResponse);
     let photo = ref({
       url: serverResponse.url,
       name: serverResponse.name,
     } as WallItemAttachment);
     empthyWall.value.wallItemAttachments?.push(photo.value);
-    console.log(empthyWall);
   };
   </script>
   <style >

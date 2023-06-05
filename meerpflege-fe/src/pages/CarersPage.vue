@@ -351,7 +351,6 @@ import { useCarersStore } from 'src/stores/carer-store';
     store.createCarers(emptyCarer.value).then(() => {
       location.reload();
     });
-    console.log(emptyCarer.value);
   };
   
   const deleteCarer = (id: number) => {
@@ -364,7 +363,6 @@ import { useCarersStore } from 'src/stores/carer-store';
     store.editCarers(emptyCarer.value).then(() => {
       location.reload();
     });
-    console.log(emptyCarer.value);
   }
   
   const isValid = (val: string) => {

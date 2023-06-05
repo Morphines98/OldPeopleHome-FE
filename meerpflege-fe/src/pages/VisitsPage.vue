@@ -128,7 +128,6 @@ function addInterval(dayId: string) {
   if (day && day.workingIntervals) {
     day.workingIntervals.push(newInterval);
   }
-  console.log(day);
 }
 
 function removeInterval(dayId: string, index: number) {
@@ -145,7 +144,6 @@ const dayIdsWithSideEffect = computed({
     return dayIds.value;
   },
   set(newVal) {
-    console.log(oldDayIds.value)
     const changedValue = newVal.length > oldDayIds.value.length ? newVal.find(x => !oldDayIds.value.includes(x)) : oldDayIds.value.find(x => !newVal.includes(x));
     const checked = newVal.length > oldDayIds.value.length;
     handleCheckboxChange(changedValue, checked);
@@ -177,7 +175,6 @@ const saveData = () => {
     workingTimes: workingTimeForDay.value
   }
 
-  console.log(body);
 
   visitsStore.updateVisits(workingTimeForDay.value).then(() => {
     location.reload();

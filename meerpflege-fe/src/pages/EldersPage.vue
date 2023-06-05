@@ -444,7 +444,6 @@ const createElder = () => {
   store.createElders(empthyElder.value).then(() => {
     location.reload();
   });
-  console.log(empthyElder.value);
 };
 
 const deleteElder = (id: number) => {
@@ -459,7 +458,6 @@ const editElder = () => {
   store.editElders(empthyElder.value).then(() => {
     location.reload();
   });
-  console.log(empthyElder.value);
 };
 
 const uploadFactory = (files) => {
@@ -479,10 +477,8 @@ const uploadFactory = (files) => {
 const onUploaded = ({ files }) => {
   const file = files[0];
   const serverResponse = JSON.parse(file.xhr.responseText);
-  console.log(serverResponse);
 
   empthyElder.value.avatarUrl = serverResponse.url;
-  console.log(empthyElder);
 };
 
 let now = new Date();

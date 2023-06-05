@@ -116,7 +116,6 @@ import { useCarersStore } from 'src/stores/carer-store';
       else
       location.reload();
     });
-    console.log(carer.value);
   };
   </script>
   

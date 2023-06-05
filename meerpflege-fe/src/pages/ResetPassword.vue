@@ -34,7 +34,6 @@ import { computed, onMounted } from 'vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-console.log("da");
 
 const store = useAccountStore();
 

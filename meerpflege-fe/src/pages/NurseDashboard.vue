@@ -41,8 +41,6 @@ import { useAccountStore } from 'src/stores/global';
 import { ref } from 'vue';
 
 var store = useAccountStore();
-console.log(store.user);
 
-console.log(store.isAdmin);
 
 </script>

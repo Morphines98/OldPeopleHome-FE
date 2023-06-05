@@ -60,7 +60,6 @@
 import { useAccountStore } from 'src/stores/global';
 import { ref } from 'vue';
 
-console.log('da');
 
 const store = useAccountStore();
 const email = ref('');
@@ -69,6 +68,5 @@ const password = ref('');
 const login = async () => {
   await store.logIn({ email: email.value, password: password.value });
 
-  console.log(store.jwtToken);
 };
 </script>

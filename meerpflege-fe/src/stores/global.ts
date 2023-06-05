@@ -67,7 +67,6 @@ export const useAccountStore = defineStore('account', {
     async logIn(model: { email: string; password: string }) {
       const user = await AccountService.login(model);
 
-      console.log(user);
       this.jwtToken = user.token;
       this.refreshToken = 'dana';
 
@@ -102,7 +101,6 @@ export const useAccountStore = defineStore('account', {
       }
       localStorage.setItem('user', JSON.stringify(this.user));
 
-      console.log(this.user);
     },
 
     logOut() {

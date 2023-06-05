@@ -281,7 +281,6 @@ const createActivity = () => {
   activityStore.createActivities(emptyActivity.value).then(() => {
     location.reload();
   });
-  console.log(emptyActivity.value);
 };
 
 const deleteActivity = (id: number) => {

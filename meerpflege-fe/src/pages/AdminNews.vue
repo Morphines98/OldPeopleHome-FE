@@ -404,8 +404,6 @@ const uploadFactory = (files) => {
 const onUploaded = ({ files }) => {
   const file = files[0];
   const serverResponse = JSON.parse(file.xhr.responseText);
-  console.log(serverResponse);
-  debugger;
   let newNewsAtach = ref({
     url: serverResponse.url,
     name: serverResponse.name,
