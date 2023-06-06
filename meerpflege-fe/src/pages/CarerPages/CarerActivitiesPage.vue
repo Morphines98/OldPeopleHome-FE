@@ -97,7 +97,7 @@ import { useCarerActivitiesStore } from 'src/stores/carer-stores/carer-activitie
  
   onMounted(async () => {
     isPageLoading.value = true;
-    activities.value = await activityStore.getNurseActivities();
+    activities.value = await activityStore.getCarerActivities();
     isPageLoading.value = false;
   });
   </script>

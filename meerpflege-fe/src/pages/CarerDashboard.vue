@@ -20,6 +20,11 @@
           <span>Wall</span>
         </div>
       </RouterLink>
+      <RouterLink to="/carer/elders" style="text-decoration: none;">
+        <div class="dashboard-bubble" style="background-color: #A556AF;">
+          <span>My Elders</span>
+        </div>
+      </RouterLink>
       <RouterLink to="/carer/visits" style="text-decoration: none;">
         <div class="dashboard-bubble" style="background-color: #82C387;">
           <span>Visits</span>

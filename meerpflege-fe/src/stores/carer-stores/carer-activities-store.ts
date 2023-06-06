@@ -4,7 +4,7 @@ import { CarerActivitiesService } from "src/services/carer-service/carer-activit
 export const useCarerActivitiesStore = defineStore('activities', {
     actions: {
     
-      async getNurseActivities()
+      async getCarerActivities()
       {
         return await CarerActivitiesService.getCarerActivities();
       },

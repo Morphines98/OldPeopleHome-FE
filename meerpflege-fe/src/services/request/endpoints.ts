@@ -24,6 +24,7 @@ export class Endpoints {
   static getCarerNews = 'CarersNews';
   static getCarerActivities = 'CarersActivities';
   static getCarerWall = 'CarerWall';
+  static getCarerElders = 'CarerElders';
 
   static getGroups = 'HomeGroups';
   static postGroup = 'HomeGroups';

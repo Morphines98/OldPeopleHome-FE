@@ -173,6 +173,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/CarerPages/CarerNewsPage.vue'),
         meta: { roles: [UserRole.CareTaker] },
       },
+      {
+        path: 'elders',
+        component: () => import('pages/CarerPages/CarerElderPage.vue'),
+        meta: { roles: [UserRole.CareTaker] },
+      },
     ],
   },
   
