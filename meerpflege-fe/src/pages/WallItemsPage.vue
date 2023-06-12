@@ -39,7 +39,7 @@
     >
       <div style="width: 70% ;margin-bottom: 5rem;">
         <q-card>
-          <q-carousel swipeable animated v-model="wallItem.slide" thumbnails infinite v-model:fullscreen="fullscreen">
+          <q-carousel swipeable animated v-model="wallItem.slide" thumbnails infinite v-model:fullscreen="wallItem.fullScreen">
             <q-carousel-slide
               v-for="wallAtach in wallItem.wallItemAttachments"
               :key="wallAtach.id"
@@ -56,8 +56,8 @@
         >
           <q-btn
             push round dense color="white" text-color="primary"
-            :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
-            @click="fullscreen = !fullscreen"
+            :icon="wallItem.fullScreen ? 'fullscreen_exit' : 'fullscreen'"
+            @click="wallItem.fullScreen = !wallItem.fullScreen"
           />
         </q-carousel-control>
       </template>
@@ -184,6 +184,7 @@ onMounted(async () => {
   wallItems.value = await store.getWallItems();
   wallItems.value.forEach((element) => {
     element.slide = element.wallItemAttachments?.[0].name;
+    element.fullScreen = false;
   });
   groups.value = await acountStore.getGroups();
   isPageLoading.value = false;

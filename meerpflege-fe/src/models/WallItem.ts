@@ -8,6 +8,7 @@ export interface WallItem {
     groupId:number | null;
     forAllGroups: boolean | null;
     slide:string|undefined;
+    fullScreen:boolean;
 
   }
 

@@ -34,7 +34,6 @@
             />
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Not reigistered? Created an Account</p>
             <p class="text-grey-6">
               Forgot password?
               <RouterLink

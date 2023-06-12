@@ -23,7 +23,7 @@
       >
         <div style="width: 70% ;margin-bottom: 5rem;">
           <q-card>
-            <q-carousel swipeable animated v-model="wallItem.slide" thumbnails infinite v-model:fullscreen="fullscreen">
+            <q-carousel swipeable animated v-model="wallItem.slide" thumbnails infinite v-model:fullscreen="wallItem.fullScreen">
               <q-carousel-slide
                 v-for="wallAtach in wallItem.wallItemAttachments"
                 :key="wallAtach.id"
@@ -40,8 +40,8 @@
         >
           <q-btn
             push round dense color="white" text-color="primary"
-            :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
-            @click="fullscreen = !fullscreen"
+            :icon="wallItem.fullScreen ? 'fullscreen_exit' : 'fullscreen'"
+            @click="wallItem.fullScreen = !wallItem.fullScreen"
           />
         </q-carousel-control>
       </template>
@@ -71,19 +71,18 @@
   <script setup lang="ts">
   import { WallItem } from 'src/models/WallItem';
   import { onMounted, ref } from 'vue';
-import { useNurseWallStore } from 'src/stores/nurse-stores/nurse-wall-store';
 import { useCarerWallStore } from 'src/stores/carer-stores/carer-wall-store';
 
   var store = useCarerWallStore();
   const wallItems = ref([] as WallItem[]);
   const isPageLoading = ref(false);
-  const fullscreen = ref(false);
   
   onMounted(async () => {
     isPageLoading.value = true;
     wallItems.value = await store.getCarerWall();
     wallItems.value.forEach((element) => {
       element.slide = element.wallItemAttachments?.[0].name;
+      element.fullScreen = false;
     });
     isPageLoading.value = false;
   });
