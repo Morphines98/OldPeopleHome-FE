@@ -75,7 +75,7 @@
   
           <q-avatar size="100px">
             <img
-              :src="carer.avatarUrl ?? 'https://cdn.quasar.dev/img/avatar.png'"
+              :src="carer.avatarUrl ?? 'https://oldpeoplehome.blob.core.windows.net/files/istockphoto-1018999828-170667a.jpg'"
             />
           </q-avatar>
           <q-item-section style="padding: 5%">
