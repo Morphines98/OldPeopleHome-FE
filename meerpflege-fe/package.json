@@ -2,8 +2,8 @@
   "name": "meerpflege-fe",
   "version": "0.0.1",
   "description": "MeerPflege",
-  "productName": "MEerPflege",
-  "author": "Octav <o.ciornei@vermeer.group>",
+  "productName": "OldPeopleHome",
+  "author": "Maria ",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",

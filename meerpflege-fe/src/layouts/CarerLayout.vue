@@ -11,7 +11,7 @@
             <q-avatar>
               <img src="~/src/assets/logo.png" />
             </q-avatar>
-            Old People's Home
+            Old People Home
           </RouterLink>
         </q-toolbar-title>
 

@@ -102,7 +102,7 @@
           >
             <q-uploader
               ref="uploader"
-              label="Upload profile picture"
+              label="Upload documents"
               auto-upload
               :factory="uploadFactory"
               @uploaded="onUploaded"
@@ -114,7 +114,7 @@
               rounded
               outlined
               v-model="emptyNewsItem.title"
-              label="Titel"
+              label="Title"
             />
           </div>
           <div>
@@ -124,7 +124,7 @@
               outlined
               v-model="emptyNewsItem.content"
               type="textarea"
-              label="Inhalt"
+              label="Content"
             />
           </div>
           <div style="display: flex; flex-direction: row; flex-wrap: wrap">
@@ -182,7 +182,7 @@
               rounded
               outlined
               v-model="emptyEditNewsItem.title"
-              label="Titel"
+              label="Title"
             />
           </div>
           <div>
@@ -192,7 +192,7 @@
               outlined
               v-model="emptyEditNewsItem.content"
               type="textarea"
-              label="Inhalt"
+              label="Content"
             />
           </div>
           <div style="display: flex; flex-direction: row; flex-wrap: wrap">

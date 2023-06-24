@@ -112,7 +112,7 @@
               rounded
               outlined
               v-model="empthyWall.title"
-              label="Titel"
+              label="Title"
             />
           </div>
           <div>
